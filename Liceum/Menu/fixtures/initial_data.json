@@ -1,0 +1,1 @@
+[{"pk": 1, "model": "Menu.menu", "fields": {"text": "second menu", "number": 2, "visible": true}}, {"pk": 2, "model": "Menu.menu", "fields": {"text": "\u043f\u0435\u0440\u0432\u043e\u0435 \u043c\u0435\u043d\u044e", "number": 1, "visible": true}}]

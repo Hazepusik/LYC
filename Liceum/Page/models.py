@@ -10,6 +10,7 @@ class Page(models.Model):
 	visible = models.BooleanField()
 	menupoint = models.ForeignKey(Menu,on_delete=models.SET_NULL, null=True)
 	title = models.CharField(null=True,blank=True,max_length=30)
+	position = models.IntegerField(null=True,blank=True)
 	
 class PageAdmin(admin.ModelAdmin):
     list_display = ('name','visible')
