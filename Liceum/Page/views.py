@@ -5,6 +5,7 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response, redirect
 
 from Page.models import Page
+#optimization and algorithmization
 
 def PageOut(request,pageid):	
     page = Page.objects.filter(visible = True).get(id = pageid)
