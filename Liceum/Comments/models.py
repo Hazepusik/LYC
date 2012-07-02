@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib import admin
 
-# Create your models here.
 
 class Comment(models.Model):
 	name = models.CharField(max_length=45)
