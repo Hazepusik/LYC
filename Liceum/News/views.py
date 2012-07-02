@@ -12,5 +12,5 @@ def NewsOut(request):
 	newslist= News.objects.filter(visible = True)
 	temp = loader.get_template('news.html')
 	cont = Context({'NewsText':newslist})
-	#return shopp
+	
 	return HttpResponse(temp.render(cont))

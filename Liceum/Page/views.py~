@@ -8,7 +8,7 @@ from Page.models import Page
 
 def PageOut(request,pageid):	
     page = Page.objects.filter(visible = True).get(id = pageid)
-    temp = loader.get_template('Pages.html')
+    temp = loader.get_template('page.html')
     cont = Context({'Page':page})
 	
     return HttpResponse(temp.render(cont))

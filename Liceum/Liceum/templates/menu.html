@@ -1,0 +1,14 @@
+<body>
+{%for menu in MenuText%}
+{{menu.number}} <br>
+{{menu.text}}<br>
+{%for page in Pgs%}
+{%if page.menupoint.number = menu.number%}
+&nbsp;<b>{{page.name}}</b>{{page.text}}<br>
+{%endif%}
+{%endfor%}
+<hr>
+{%endfor%}
+
+	
+</body>

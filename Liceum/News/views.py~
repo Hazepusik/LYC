@@ -9,8 +9,8 @@ from News.models import News
 import datetime
 
 def NewsOut(request):	
-	newosti = News.objects.filter(visible = True)
+	newslist= News.objects.filter(visible = True)
 	temp = loader.get_template('news.html')
-	cont = Context({'NewsText':newosti[0]})
+	cont = Context({'NewsText':newslist})
 	#return shopp
 	return HttpResponse(temp.render(cont))
