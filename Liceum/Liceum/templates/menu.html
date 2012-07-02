@@ -4,7 +4,8 @@
 {{menu.text}}<br>
 {%for page in Pgs%}
 {%if page.menupoint.number = menu.number%}
-&nbsp;<b>{{page.name}}</b>{{page.text}}<br>
+<b>&nbsp;<a href="../Pages/{{page.id}}">{{page.name}}</a></b><br>
+&nbsp;&nbsp;{{page.text}}<br>
 {%endif%}
 {%endfor%}
 <hr>

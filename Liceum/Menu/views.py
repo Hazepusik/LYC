@@ -10,7 +10,7 @@ from Page.models import Page
 
 def MenuOut(request):	
     menulist = Menu.objects.filter(visible = True).order_by('number')
-    pagelist = Page.objects.filter(visible = True).order_by('id')
+    pagelist = Page.objects.filter(visible = True).order_by('position')
     temp = loader.get_template('menu.html')
     cont = Context({'MenuText':menulist, 'Pgs':pagelist})
 	
