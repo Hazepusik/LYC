@@ -10,5 +10,5 @@ def PageOut(request,pageid):
     page = Page.objects.filter(visible = True).get(id = pageid)
     temp = loader.get_template('Pages.html')
     cont = Context({'Page':page})
-	
+
     return HttpResponse(temp.render(cont))
