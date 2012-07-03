@@ -20,6 +20,9 @@ urlpatterns = patterns('',
     url(r'^News/$', NewsOut ),
     url(r'^Menus/$', MenuOut ),
     url(r'^Pages/(?P<pageid>\w+)/$', PageOut ),
+    url(r'^add_form/$', MenuToAdd ),
+    url(r'^add_page/$', AddPage ),
+    url(r'^editpage/(?P<pageid>\w+)/$', EdPgOut ),
     
     
 )

@@ -1,0 +1,20 @@
+<form method="post" action="/edit_page/"+{{Page.id}}+"/"> 
+
+{% csrf_token %}
+
+<input type="text" name="header" size="10" maxlength="30" value="{{Page.title}}">
+<input type="text" name="pgname" size="10" maxlength="30" value="{{Page.name}}">
+<input name="visible" type="checkbox" value="{{Page.visible}}" checked>
+
+<select name="list" size = “10” multiple>
+{%for menu in MenuText%} 
+<option value="{{menu.id}}">{{menu.text}}</option> 
+{%endfor%}
+</select>
+
+<textarea name="txt" cols="15" rows="10">{{Page.text}}</textarea>
+<input type="text" name="pos" size="10" maxlength="5" value="{{Page.position}}">
+
+<input type="submit" name="btn" value="Save It">
+
+</form>

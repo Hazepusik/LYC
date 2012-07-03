@@ -1,0 +1,20 @@
+<form method="post" action="/add_page/"> 
+
+{% csrf_token %}
+
+<input type="text" name="header" size="10" maxlength="30" value="">
+<input type="text" name="pgname" size="10" maxlength="30" value="">
+<input name="visible" type="checkbox" value="Visible" checked>
+
+<select name="list" size = “10” multiple>
+{%for menu in MenuText%} 
+<option value="{{menu.id}}">{{menu.text}}</option> 
+{%endfor%}
+</select>
+
+<textarea name="txt" cols="15" rows="10"></textarea>
+<input type="text" name="pos" size="10" maxlength="5" value="">
+
+<input type="submit" name="btn" value="Submit It">
+
+</form>
