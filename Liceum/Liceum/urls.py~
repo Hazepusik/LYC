@@ -22,7 +22,7 @@ urlpatterns = patterns('',
     url(r'^Pages/(?P<pageid>\w+)/$', PageOut ),
     url(r'^add_form/$', MenuToAdd ),
     url(r'^add_page/$', AddPage ),
-    url(r'^editpage/(?P<pageid>\w+)/$', EditPage ),
+    url(r'^editpage/(?P<pageid>\w+)/$', EdPgOut ),
     
     
 )
