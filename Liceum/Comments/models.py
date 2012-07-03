@@ -7,8 +7,8 @@ class Comment(models.Model):
 	text = models.TextField(null=True,blank=True)
 	visible = models.BooleanField()
 	dateadd = models.DateTimeField(auto_now_add=True)
-	author = models.CharField(max_length=15)
-	parent = models.ForeignKey('self', null=True, blank=True)
+	author = models.CharField(max_length=30)
+	mailback = models.EmailField(max_length=30)
 	
 class CommentsAdmin(admin.ModelAdmin):
     list_display = ('name','author','dateadd')
