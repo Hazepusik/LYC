@@ -11,13 +11,11 @@ from Page.models import Page
 def EdPgOut(request,pageid):	
     menulist = Menu.objects.filter(visible = True).order_by('number')
     pagelist = Page.objects.get(id = pageid)
-    temp = loader.get_template('menu.html')
-    cont = Context({'MenuText':menulist, 'Page':pagelist})
-    return HttpResponse(temp.render(cont))
+    return render_to_response('editpage.html', {'MenuText':menulist, 'Page':pagelist}, context_instance = RequestContext(request))
 
 def MenuOut(request):	
     menulist = Menu.objects.filter(visible = True).order_by('number')
-    pagelist = Page.objects.filter(visible = True).order_by('position')
+    pagelist = Page.objects.filter(visible = True).order_by('position') 
     temp = loader.get_template('menu.html')
     cont = Context({'MenuText':menulist, 'Pgs':pagelist})
     return HttpResponse(temp.render(cont))
