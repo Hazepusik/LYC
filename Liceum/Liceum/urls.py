@@ -26,6 +26,7 @@ urlpatterns = patterns('',
     url(r'^edit_page/(?P<pageid>\w+)/$', EditPage ),
     url(r'^addmenu/$', MenuToAdd ),
     url(r'^add_menu/$', AddMenu ),
-    
+    url(r'^editmenu/(?P<menuid>\w+)/$', EdMenuOut ),
+    url(r'^edit_menu/(?P<menuid>\w+)/$', EditMenu ),
     
 )

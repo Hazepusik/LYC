@@ -32,3 +32,17 @@ def AddMenu(request):
         newmenu = Menu(text = request.POST['menuname'], visible = request.POST['visible'], number = request.POST['pos'])
         newmenu.save()
         return redirect('/Menus/')
+    
+def EdMenuOut(request, menuid):	
+    menulist = Menu.objects.get(id = menuid)
+    return render_to_response('editmenu.html', {'Menu':menulist}, context_instance = RequestContext(request))
+
+
+def EditMenu(request, menuid):
+    if request.user.is_authenticated():
+        menu = Menu.objects.get(id = menuid)
+        menu.text = request.POST['menuname']
+        menu.Visible = request.POST['visible']
+        menu.number = request.POST['pos']
+        menu.save()
+        return redirect('/Menus/')

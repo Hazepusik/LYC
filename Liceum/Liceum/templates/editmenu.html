@@ -1,0 +1,12 @@
+<form method="post" action="/edit_menu/{{Menu.id}}/"> 
+
+{% csrf_token %}
+
+
+<input type="text" name="menuname" size="10" maxlength="30" value="{{Menu.text}}">
+<input name="visible" type="checkbox" value="{{Menu.Visible}}" >
+<input type="text" name="pos" size="10" maxlength="30" value="{{Menu.number}}">
+
+<input type="submit" name="btn" value="Save It">
+
+</form>
