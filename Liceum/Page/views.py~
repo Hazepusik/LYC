@@ -30,4 +30,4 @@ def EditPage(request,pageid):
         page.title = request.POST['header'] 
         page.position = request.POST['pos']
         page.save()
-        return redirect('/Pages/'+str(newpage.id))
+        return redirect('/Pages/'+str(page.id))

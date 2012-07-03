@@ -4,9 +4,13 @@
 
 <input type="text" name="header" size="10" maxlength="30" value="">
 <input type="text" name="pgname" size="10" maxlength="30" value="">
-<input name="visible" type="checkbox" value="Visible" checked>
 
-<select name="list" size = “10” multiple>
+<select name="visible" size = “1” >
+<option value="True">Видимо</option> 
+<option value="False">Невидимо</option>
+</select>
+
+<select name="list" size = “1”>
 {%for menu in MenuText%} 
 <option value="{{menu.id}}">{{menu.text}}</option> 
 {%endfor%}

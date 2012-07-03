@@ -6,9 +6,9 @@
 <input type="text" name="pgname" size="10" maxlength="30" value="{{Page.name}}">
 <input name="visible" type="checkbox" value="{{Page.visible}}" checked>
 
-<select name="list" size = “10” multiple>
+<select name="list" size = “1” >
 {%for menu in MenuText%} 
-<option value="{{menu.id}}">{{menu.text}}</option> 
+<option {% if menu.id == Page.menupoint.id %}selected{%endif%} value="{{menu.id}}">{{menu.text}}</option> 
 {%endfor%}
 </select>
 

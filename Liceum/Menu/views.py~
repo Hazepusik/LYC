@@ -29,7 +29,11 @@ def MenuToAdd(request):
 
 def AddMenu(request):
     if request.user.is_authenticated():
-        newmenu = Menu(text = request.POST['menuname'], visible = request.POST['visible'], number = request.POST['pos'])
+        if request.POST['visible'] == "True":
+            vis = True
+        else:
+            vis = False
+        newmenu = Menu(text = request.POST['menuname'], visible = vis, number = request.POST['pos'])
         newmenu.save()
         return redirect('/Menus/')
     
@@ -42,7 +46,10 @@ def EditMenu(request, menuid):
     if request.user.is_authenticated():
         menu = Menu.objects.get(id = menuid)
         menu.text = request.POST['menuname']
-        menu.visible = request.POST['visible']
+        if request.POST['vis'] == "True":
+            menu.visible = True
+        else:
+            menu.visible = False
         menu.number = request.POST['pos']
         menu.save()
         return redirect('/Menus/')
