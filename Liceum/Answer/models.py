@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib import admin
-from Comment.models import Comment
+from Comments.models import Comment
 
 class Answer(models.Model):
 	parent = models.ForeignKey(Comment, null=True, blank=True)
