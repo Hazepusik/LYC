@@ -20,6 +20,15 @@ def MenuOut(request):
     cont = Context({'MenuText':menulist, 'Pgs':pagelist})
     return HttpResponse(temp.render(cont))
     
-def MenuToAdd(request):	
+def PgMenuToAdd(request):	
     menulist = Menu.objects.filter(visible = True).order_by('number')
-    return render_to_response('add_form.html', {'MenuText':menulist}, context_instance = RequestContext(request))
+    return render_to_response('addpage.html', {'MenuText':menulist}, context_instance = RequestContext(request))
+
+def MenuToAdd(request):	
+    return render_to_response('addpage.html', {}, context_instance = RequestContext(request))
+
+def AddMenu(request):
+    if request.user.is_authenticated():
+        newmenu = Menu(text = request.POST['menuname'], visible = request.POST['visible'], number = request.POST['pos'])
+        newmenu.save()
+        return redirect('/Menus/')
