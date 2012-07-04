@@ -22,5 +22,3 @@ def AddComment(request, whom):
 
 def DelComment(request, comid):
     Comment.objects.filter(id=com).delete()
-    #FIXIT
-    return redirect('/Menus/')

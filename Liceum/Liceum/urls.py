@@ -28,5 +28,9 @@ urlpatterns = patterns('',
     url(r'^add_menu/$', AddMenu ),
     url(r'^editmenu/(?P<menuid>\w+)/$', EdMenuOut ),
     url(r'^edit_menu/(?P<menuid>\w+)/$', EditMenu ),
+    url(r'^addcomment/(?P<whom>\w+)/$', CommToAdd ),
+    url(r'^add_comment/(?P<whom>\w+)/$', AddComm ),
+    url(r'^del_comment/(?P<whom>\w+)/$', DelComm ),
+    
     
 )

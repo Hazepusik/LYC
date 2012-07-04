@@ -16,7 +16,11 @@ def PageOut(request,pageid):
 
 def AddPage(request):
     if request.user.is_authenticated():
-        newpage = Page(name = request.POST['pgname'], menupoint = Menu.objects.get(id = request.POST['list']), text =  request.POST['txt'], visible = request.POST['visible'], title = request.POST['header'], position = request.POST['pos'])
+        if request.POST['visible'] == "True":
+            vis = True
+        else:
+            vis = False
+        newpage = Page(name = request.POST['pgname'], menupoint = Menu.objects.get(id = request.POST['list']), text =  request.POST['txt'], visible = vis, title = request.POST['header'], position = request.POST['pos'])
         newpage.save()
         return redirect('/Pages/'+str(newpage.id))
     
