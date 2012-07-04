@@ -6,21 +6,29 @@ from django.shortcuts import render_to_response, redirect
 from datetime import datetime
 
 from Comments.models import Comment
+from Menu.models import Menu
 
-def CommToAdd(request):	
-    return render_to_response('addcomment.html', {}, context_instance = RequestContext(request))
+def CommToAdd(request, whom):	
+    return render_to_response('addcomment.html', {'whom':whom}, context_instance = RequestContext(request))
 
 def AddComm(request, whom):
     if request.POST['visible'] == "True":
         vis = True
     else:
         vis = False
-    comm = Menu(text = request.POST['txt'], name = request.POST['name'], visible = vis, author = request.POST['author'], mailback = request.POST['mail'], thread = whom)
+    comm = Comment(text = request.POST['txt'], name = request.POST['name'], visible = vis, author = request.POST['author'], mailback = request.POST['mail'], thread = whom)
     comm.save()
     #FIXIT
-    return redirect('/Menus/')
+    return redirect('/comments/'+whom+'/')
 
 def DelComm(request, comid):
-    Comment.objects.filter(id=com).delete()
+    Comment.objects.filter(id=comid).delete()
     #FIXIT
-    return redirect('/Menus/')
+    return redirect('/comments/'+whom+'/')
+
+def CommOut(reqest, whom):
+    comm = Comment.objects.filter(thread = whom).filter(visible = True).order_by('dateadd')
+    temp = loader.get_template('comments.html')
+    cont = Context({'comments':comm})
+    return HttpResponse(temp.render(cont))
+    

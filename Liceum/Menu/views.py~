@@ -19,7 +19,6 @@ def MenuOut(request):
     if request.user.is_authenticated():
         menulist = Menu.objects.order_by('number')
         pagelist = Page.objects.order_by('position') 
-    if request.user.is_authenticated():
     temp = loader.get_template('menu.html')
     cont = Context({'MenuText':menulist, 'Pgs':pagelist})
     return HttpResponse(temp.render(cont))
