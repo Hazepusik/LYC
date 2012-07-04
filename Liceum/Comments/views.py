@@ -10,7 +10,7 @@ from Comments.models import Comment
 def CommToAdd(request):	
     return render_to_response('addcomment.html', {}, context_instance = RequestContext(request))
 
-def AddComment(request, whom):
+def AddComm(request, whom):
     if request.POST['visible'] == "True":
         vis = True
     else:
@@ -20,7 +20,7 @@ def AddComment(request, whom):
     #FIXIT
     return redirect('/Menus/')
 
-def DelComment(request, comid):
+def DelComm(request, comid):
     Comment.objects.filter(id=com).delete()
     #FIXIT
     return redirect('/Menus/')

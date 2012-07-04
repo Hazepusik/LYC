@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 from News.views import *
 from Menu.views import *
 from Page.views import *
-from Coments.views import *
+from Comments.views import *
 
 
 # Uncomment the next two lines to enable the admin:

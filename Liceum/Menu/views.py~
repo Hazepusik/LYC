@@ -9,19 +9,23 @@ from Page.models import Page
 
 
 def EdPgOut(request,pageid):	
-    menulist = Menu.objects.filter(visible = True).order_by('number')
+    menulist = Menu.objects.order_by('number')
     pagelist = Page.objects.get(id = pageid)
     return render_to_response('editpage.html', {'MenuText':menulist, 'Page':pagelist}, context_instance = RequestContext(request))
 
 def MenuOut(request):	
     menulist = Menu.objects.filter(visible = True).order_by('number')
     pagelist = Page.objects.filter(visible = True).order_by('position') 
+    if request.user.is_authenticated():
+        menulist = Menu.objects.order_by('number')
+        pagelist = Page.objects.order_by('position') 
+    if request.user.is_authenticated():
     temp = loader.get_template('menu.html')
     cont = Context({'MenuText':menulist, 'Pgs':pagelist})
     return HttpResponse(temp.render(cont))
     
 def PgMenuToAdd(request):	
-    menulist = Menu.objects.filter(visible = True).order_by('number')
+    menulist = Menu.objects.order_by('number')
     return render_to_response('addpage.html', {'MenuText':menulist}, context_instance = RequestContext(request))
 
 def MenuToAdd(request):	
