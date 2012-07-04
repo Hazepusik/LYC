@@ -1,9 +1,15 @@
 <body>
 {%for comm in comments%}
-<b>{{comm.name}} </b>    Author: {{comm.author}}     on {{comm.dateadd}} <br>
-&nbsp;&nbsp;{{comm.text}}<br>
-{{comm.mailback}}<br>
-<hr>
+	<b>{{comm.name}} </b>    Author: {{comm.author}}     on {{comm.dateadd}} <br>
+	&nbsp;&nbsp;{{comm.text}}<br>
+	{{comm.mailback}}<br>
+	{%for ans in answers%}
+		{% if ans.parent.id == com.id %}
+			&nbsp;&nbsp;&nbsp;&nbsp;<b>{{ans.name}} </b>    Author: {{ans.author}}     on {{ans.dateadd}} <br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ans.text}}<br>				
+		{%endif%}
+	{%endfor%}
+	<hr>
 {%endfor%}
 
 	

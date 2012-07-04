@@ -3,6 +3,7 @@ from News.views import *
 from Menu.views import *
 from Page.views import *
 from Comments.views import *
+from Answer.views import *
 
 
 # Uncomment the next two lines to enable the admin:
@@ -33,7 +34,7 @@ urlpatterns = patterns('',
     url(r'^addcomment/(?P<whom>\w+)/$', CommToAdd ),
     url(r'^add_comment/(?P<whom>\w+)/$', AddComm ),
     url(r'^del_comment/(?P<comid>\w+)/$', DelComm ),
-    url(r'^comments/(?P<comid>\w+)/$', CommOut ),
-    
+    url(r'^comments/(?P<whom>\w+)/$', CommOut ),
+    url(r'^addanswer/(?P<comid>\w+)/$', AddAns ),
     
 )

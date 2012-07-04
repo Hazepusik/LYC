@@ -1,0 +1,16 @@
+<form method="post" action="/add_answer/{{comid}}/"> 
+
+{% csrf_token %}
+
+<input type="text" name="author" size="10" maxlength="30" value="">
+<input type="text" name="name" size="10" maxlength="45" value="">
+<textarea name="txt" cols="15" rows="10"></textarea>
+
+<select name="visible" size = “1” >
+	<option value="True">Видимо</option> 
+	<option value="False">Невидимо</option>
+</select>
+
+<input type="submit" name="btn" value="Submit It">
+
+</form>

@@ -7,6 +7,7 @@ from datetime import datetime
 
 from Comments.models import Comment
 from Menu.models import Menu
+from Answer.models import Answer
 
 def CommToAdd(request, whom):	
     return render_to_response('addcomment.html', {'whom':whom}, context_instance = RequestContext(request))
@@ -28,7 +29,8 @@ def DelComm(request, comid):
 
 def CommOut(reqest, whom):
     comm = Comment.objects.filter(thread = whom).filter(visible = True).order_by('dateadd')
+    ans = Answer.objects.filter(visible = True)
     temp = loader.get_template('comments.html')
-    cont = Context({'comments':comm})
+    cont = Context({'comments':comm, 'answers':ans})
     return HttpResponse(temp.render(cont))
     
