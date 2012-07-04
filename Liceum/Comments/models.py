@@ -9,6 +9,7 @@ class Comment(models.Model):
 	dateadd = models.DateTimeField(auto_now_add=True)
 	author = models.CharField(max_length=30)
 	mailback = models.EmailField(max_length=30)
+	thread = models.CharField(max_length=3)
 	
 class CommentsAdmin(admin.ModelAdmin):
     list_display = ('name','author','dateadd')
