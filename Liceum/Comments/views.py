@@ -19,13 +19,13 @@ def AddComm(request, whom):
         vis = False
     comm = Comment(text = request.POST['txt'], name = request.POST['name'], visible = vis, author = request.POST['author'], mailback = request.POST['mail'], thread = whom)
     comm.save()
-    #FIXIT
     return redirect('/comments/'+whom+'/')
 
 def DelComm(request, comid):
-    Comment.objects.filter(id=comid).delete()
-    #FIXIT
-    return redirect('/comments/'+whom+'/')
+    if request.user.is_authenticated():
+        whom = Comment.objects.filter(id=comid).thread
+        Comment.objects.filter(id=comid).delete()
+    return redirect('control/comments/'+whom+'/')
 
 def CommOut(reqest, whom):
     comm = Comment.objects.filter(thread = whom).filter(visible = True).order_by('dateadd')
@@ -33,4 +33,12 @@ def CommOut(reqest, whom):
     temp = loader.get_template('comments.html')
     cont = Context({'comments':comm, 'answers':ans})
     return HttpResponse(temp.render(cont))
-    
+
+
+def ContrCommOut(reqest, whom):
+    if request.user.is_authenticated():
+        comm = Comment.objects.filter(thread = whom).order_by('dateadd')
+        ans = Answer.objects.filter(visible = True)
+        temp = loader.get_template('control/comments.html')
+        cont = Context({'comments':comm, 'answers':ans})
+    return HttpResponse(temp.render(cont))

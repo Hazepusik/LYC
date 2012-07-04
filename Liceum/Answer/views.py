@@ -6,6 +6,7 @@ from django.shortcuts import render_to_response, redirect
 from datetime import datetime
 
 from Comments.models import Comment
+from Answer.models import Answer
 
 
 def AnsToAdd(request, comid):	
