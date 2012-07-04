@@ -16,9 +16,9 @@ def EdPgOut(request,pageid):
 def MenuOut(request):	
     menulist = Menu.objects.filter(visible = True).order_by('number')
     pagelist = Page.objects.filter(visible = True).order_by('position') 
-    if request.user.is_authenticated():
-        menulist = Menu.objects.order_by('number')
-        pagelist = Page.objects.order_by('position') 
+  #  if request.user.is_authenticated():
+   #     menulist = Menu.objects.order_by('number')
+    #    pagelist = Page.objects.order_by('position') 
     temp = loader.get_template('menu.html')
     cont = Context({'MenuText':menulist, 'Pgs':pagelist})
     return HttpResponse(temp.render(cont))

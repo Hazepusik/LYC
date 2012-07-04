@@ -33,6 +33,7 @@ urlpatterns = patterns('',
     url(r'^addcomment/(?P<whom>\w+)/$', CommToAdd ),
     url(r'^add_comment/(?P<whom>\w+)/$', AddComm ),
     url(r'^del_comment/(?P<comid>\w+)/$', DelComm ),
+    url(r'^comments/(?P<whom>\w+)/$', CommOut ),
     
     
 )

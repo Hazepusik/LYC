@@ -32,7 +32,8 @@ urlpatterns = patterns('',
     url(r'^edit_menu/(?P<menuid>\w+)/$', EditMenu ),
     url(r'^addcomment/(?P<whom>\w+)/$', CommToAdd ),
     url(r'^add_comment/(?P<whom>\w+)/$', AddComm ),
-    url(r'^del_comment/(?P<whom>\w+)/$', DelComm ),
+    url(r'^del_comment/(?P<comid>\w+)/$', DelComm ),
+    url(r'^comments/(?P<comid>\w+)/$', CommOut ),
     
     
 )

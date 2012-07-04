@@ -22,6 +22,13 @@ def AddComm(request, whom):
     return redirect('/Menus/')
 
 def DelComm(request, comid):
-    Comment.objects.filter(id=com).delete()
+    Comment.objects.filter(id=comid).delete()
     #FIXIT
     return redirect('/Menus/')
+
+def CommOut(reqest, whom):
+    comm = Comment.objects.filter(thread = whom).filter(visible = True).order_by('dateadd')
+    temp = loader.get_template('comments.html')
+    cont = Context({'comments':comm})
+    return HttpResponse(temp.render(cont))
+    

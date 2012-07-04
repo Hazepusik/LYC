@@ -19,9 +19,16 @@ def AddComm(request, whom):
     comm = Comment(text = request.POST['txt'], name = request.POST['name'], visible = vis, author = request.POST['author'], mailback = request.POST['mail'], thread = whom)
     comm.save()
     #FIXIT
-    return redirect('/Menus/')
+    return redirect('/comments/'+whom+'/')
 
 def DelComm(request, comid):
     Comment.objects.filter(id=comid).delete()
     #FIXIT
-    return redirect('/Menus/')
+    return redirect('/comments/'+whom+'/')
+
+def CommOut(reqest, whom):
+    comm = Comment.objects.filter(thread = whom).filter(visible = True).order_by('dateadd')
+    temp = loader.get_template('comments.html')
+    cont = Context({'comments':comm})
+    return HttpResponse(temp.render(cont))
+    
