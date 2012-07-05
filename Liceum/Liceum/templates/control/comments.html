@@ -1,4 +1,7 @@
 <body>
+	
+{% csrf_token %}
+
 {%for comm in comments%}
 	<b>{{comm.name}} </b>    Author: {{comm.author}}     on {{comm.dateadd}} <br>
 	&nbsp;&nbsp;{{comm.text}}<br>

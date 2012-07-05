@@ -38,5 +38,8 @@ urlpatterns = patterns('',
     url(r'^comments/(?P<whom>\w+)/$', CommOut ),
     url(r'^addanswer/(?P<comid>\w+)/$', AnsToAdd ),
     url(r'^add_answer/(?P<comid>\w+)/$', AddAns ),
-    
+    url(r'^control/addnews/$', NewsToAdd ),
+    url(r'^add_news/$', AddNews ),
+    url(r'^editnews/(?P<newwid>\w+)/$', EdNewsOut ),
+    url(r'^edit_menu/(?P<newwid>\w+)/$', EditNews ),
 )

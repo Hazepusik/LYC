@@ -9,9 +9,10 @@ from Page.models import Page
 
 
 def EdPgOut(request,pageid):	
-    menulist = Menu.objects.order_by('number')
-    pagelist = Page.objects.get(id = pageid)
-    return render_to_response('editpage.html', {'MenuText':menulist, 'Page':pagelist}, context_instance = RequestContext(request))
+    if request.user.is_authenticated():
+        menulist = Menu.objects.order_by('number')
+        pagelist = Page.objects.get(id = pageid)
+        return render_to_response('editpage.html', {'MenuText':menulist, 'Page':pagelist}, context_instance = RequestContext(request))
 
 def MenuOut(request):	
     menulist = Menu.objects.filter(visible = True).order_by('number')
@@ -24,11 +25,13 @@ def MenuOut(request):
     return HttpResponse(temp.render(cont))
     
 def PgMenuToAdd(request):	
-    menulist = Menu.objects.order_by('number')
-    return render_to_response('addpage.html', {'MenuText':menulist}, context_instance = RequestContext(request))
+    if request.user.is_authenticated():
+        menulist = Menu.objects.order_by('number')
+        return render_to_response('addpage.html', {'MenuText':menulist}, context_instance = RequestContext(request))
 
 def MenuToAdd(request):	
-    return render_to_response('addmenu.html', {}, context_instance = RequestContext(request))
+    if request.user.is_authenticated():
+        return render_to_response('addmenu.html', {}, context_instance = RequestContext(request))
 
 def AddMenu(request):
     if request.user.is_authenticated():
@@ -41,8 +44,9 @@ def AddMenu(request):
         return redirect('/Menus/')
     
 def EdMenuOut(request, menuid):	
-    menulist = Menu.objects.get(id = menuid)
-    return render_to_response('editmenu.html', {'Menu':menulist}, context_instance = RequestContext(request))
+    if request.user.is_authenticated():
+        menulist = Menu.objects.get(id = menuid)
+        return render_to_response('editmenu.html', {'Menu':menulist}, context_instance = RequestContext(request))
 
 
 def EditMenu(request, menuid):

@@ -29,7 +29,7 @@ def DelComm(request, comid):
         for ans in Answer.objects.filter(parent=comm):
             ans.delete()
         comm.delete()
-    return redirect('../../control/comments/'+whom+'/')
+    return redirect('/../../control/comments/'+whom+'/')
 
 def CommOut(reqest, whom):
     comm = Comment.objects.filter(thread = whom).filter(visible = True).order_by('dateadd')
