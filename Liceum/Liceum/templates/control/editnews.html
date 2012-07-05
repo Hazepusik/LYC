@@ -7,7 +7,7 @@
 
 <textarea name="txt" cols="15" rows="10">{{News.text}}</textarea>
 
-<select name="visible" size = “1” >
+<select name="vis" size = “1” >
 <option value="True">Видимо</option> 
 <option {% if not News.visible %}selected{%endif%} value="False">Невидимо</option>
 </select>

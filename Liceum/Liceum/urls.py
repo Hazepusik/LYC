@@ -40,6 +40,6 @@ urlpatterns = patterns('',
     url(r'^add_answer/(?P<comid>\w+)/$', AddAns ),
     url(r'^control/addnews/$', NewsToAdd ),
     url(r'^add_news/$', AddNews ),
-    url(r'^editnews/(?P<newwid>\w+)/$', EdNewsOut ),
-    url(r'^edit_menu/(?P<newwid>\w+)/$', EditNews ),
+    url(r'^control/editnews/(?P<newwid>\w+)/$', EdNewsOut ),
+    url(r'^edit_news/(?P<newwid>\w+)/$', EditNews ),
 )

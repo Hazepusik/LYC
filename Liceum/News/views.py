@@ -46,6 +46,7 @@ def EditNews(request, newwid):
         else:
             neww.visible = False
         neww.name = request.POST['name']
-        neww.dateadd = request.POST['date']
+        
+        neww.dateadd = '1234-01-23'     #request.POST['date']
         neww.save()
         return redirect('/News/')
