@@ -42,4 +42,6 @@ urlpatterns = patterns('',
     url(r'^add_news/$', AddNews ),
     url(r'^control/news/edit/(?P<newwid>\w+)/$', EdNewsOut ),
     url(r'^edit_news/(?P<newwid>\w+)/$', EditNews ),
+    url(r'^del_news/(?P<newwid>\w+)/$', DelNews ),
+    url(r'^control/news/$', ContrNewsOut ),
 )
