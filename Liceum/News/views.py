@@ -17,7 +17,7 @@ def NewsOut(request):
 
 def NewsToAdd(request):
     if request.user.is_authenticated():
-        return render_to_response('control/addnews.html', {}, context_instance = RequestContext(request))
+        return render_to_response('control/news/add.html', {}, context_instance = RequestContext(request))
 
 
 def AddNews(request):
@@ -34,7 +34,7 @@ def AddNews(request):
 def EdNewsOut(request, newwid):	
     if request.user.is_authenticated():
         neww = News.objects.get(id = newwid)
-        return render_to_response('control/editnews.html', {'News':neww}, context_instance = RequestContext(request))
+        return render_to_response('control/news/edit.html', {'News':neww}, context_instance = RequestContext(request))
 
 
 def EditNews(request, newwid):
