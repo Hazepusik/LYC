@@ -4,9 +4,10 @@
 <hr>
 <hr>	
 {%for menu in MenuText%}
-{{menu.text}}<br>
-<a href="../../del_menu/{{menu.id}}">Удалить</a><br>
-<a href="../menu/edit/{{menu.id}}">Редактировать</a><br>
+<a href="../page/{{menu.id}}">{{menu.text}}</a><br>
+<br>
+&nbsp;&nbsp;<a href="../../del_menu/{{menu.id}}">Удалить</a><br>
+&nbsp;&nbsp;<a href="../menu/edit/{{menu.id}}">Редактировать</a><br>
 
 <!-- {%for page in Pgs%}
 {%if page.menupoint.number = menu.number%}
