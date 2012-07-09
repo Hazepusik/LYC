@@ -1,0 +1,20 @@
+<form method="post" action="/edit_news/{{News.id}}/"> 
+
+{% csrf_token %}
+
+
+<input type="text" name="name" size="10" maxlength="30" value="{{News.name}}">
+
+<textarea name="txt" cols="15" rows="10">{{News.text}}</textarea>
+
+<select name="vis" size = “1” >
+<option value="True">Видимо</option> 
+<option {% if not News.visible %}selected{%endif%} value="False">Невидимо</option>
+</select>
+
+<input type="date" name="date" value="{{News.dateadd}}">
+
+<input type="submit" name="btn" value="Save It">
+
+</form>
+

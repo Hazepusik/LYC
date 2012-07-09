@@ -9,9 +9,10 @@ from Page.models import Page
 
 
 def EdPgOut(request,pageid):	
-    menulist = Menu.objects.order_by('number')
-    pagelist = Page.objects.get(id = pageid)
-    return render_to_response('editpage.html', {'MenuText':menulist, 'Page':pagelist}, context_instance = RequestContext(request))
+    if request.user.is_authenticated():
+        menulist = Menu.objects.order_by('number')
+        pagelist = Page.objects.get(id = pageid)
+        return render_to_response('control/page/edit.html', {'MenuText':menulist, 'Page':pagelist}, context_instance = RequestContext(request))
 
 def MenuOut(request):	
     menulist = Menu.objects.filter(visible = True).order_by('number')
@@ -24,11 +25,13 @@ def MenuOut(request):
     return HttpResponse(temp.render(cont))
     
 def PgMenuToAdd(request):	
-    menulist = Menu.objects.order_by('number')
-    return render_to_response('addpage.html', {'MenuText':menulist}, context_instance = RequestContext(request))
+    if request.user.is_authenticated():
+        menulist = Menu.objects.order_by('number')
+        return render_to_response('control/page/add.html', {'MenuText':menulist}, context_instance = RequestContext(request))
 
 def MenuToAdd(request):	
-    return render_to_response('addmenu.html', {}, context_instance = RequestContext(request))
+    if request.user.is_authenticated():
+        return render_to_response('control/menu/add.html', {}, context_instance = RequestContext(request))
 
 def AddMenu(request):
     if request.user.is_authenticated():
@@ -38,11 +41,12 @@ def AddMenu(request):
             vis = False
         newmenu = Menu(text = request.POST['menuname'], visible = vis, number = request.POST['pos'])
         newmenu.save()
-        return redirect('/Menus/')
+        return redirect('/control/menu/')
     
 def EdMenuOut(request, menuid):	
-    menulist = Menu.objects.get(id = menuid)
-    return render_to_response('editmenu.html', {'Menu':menulist}, context_instance = RequestContext(request))
+    if request.user.is_authenticated():
+        menulist = Menu.objects.get(id = menuid)
+        return render_to_response('control/menu/edit.html', {'Menu':menulist}, context_instance = RequestContext(request))
 
 
 def EditMenu(request, menuid):
@@ -55,4 +59,16 @@ def EditMenu(request, menuid):
             menu.visible = False
         menu.number = request.POST['pos']
         menu.save()
-        return redirect('/Menus/')
+        return redirect('/control/menu/')
+    
+def DelMenu(request, menuid):
+    if request.user.is_authenticated():
+        neww = Menu.objects.get(id=menuid).delete() 
+        return redirect('/control/menu/')
+    
+    
+def ContrMenuOut(request):    
+    if request.user.is_authenticated():
+        menu= Menu.objects.all
+        cont = Context({'MenuText':menu})
+        return render_to_response('control/menu.html', cont, context_instance = RequestContext(request))

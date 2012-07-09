@@ -1,0 +1,17 @@
+<body>
+	
+{% csrf_token %}
+<a href="../news/add/">Добавить</a><br>
+<hr>
+<hr>
+{%for neww in NewsText%}
+{{neww.name}} {{neww.dateadd}}	<br>
+&nbsp;&nbsp;{{neww.text}}<br>
+<a href="../../del_news/{{neww.id}}">Удалить</a><br>
+<a href="../news/edit/{{neww.id}}">Редактировать</a><br>
+
+<hr>
+{%endfor%}
+
+	
+</body>
