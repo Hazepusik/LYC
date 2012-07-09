@@ -61,4 +61,4 @@ def ContrNewsOut(request):
 def DelNews(request, newwid):
     if request.user.is_authenticated():
         neww = News.objects.get(id=newwid).delete() 
-        return redirect('/control/comments/')
+        return redirect('/control/news/')

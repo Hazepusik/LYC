@@ -1,0 +1,22 @@
+<body>
+	
+<a href="../menu/add">Добавить</a><br>
+<hr>
+<hr>	
+{%for menu in MenuText%}
+{{menu.text}}<br>
+<a href="../../del_menu/{{menu.id}}">Удалить</a><br>
+<a href="../menu/edit/{{menu.id}}">Редактировать</a><br>
+
+<!-- {%for page in Pgs%}
+{%if page.menupoint.number = menu.number%}
+<b>&nbsp;<a href="../Pages/{{page.id}}">{{page.name}}</a></b><br>
+&nbsp;&nbsp;{{page.text}}<br>
+{%endif%}
+{%endfor%} -->
+
+<hr>
+{%endfor%}
+
+	
+</body>

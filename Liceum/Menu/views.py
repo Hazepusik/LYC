@@ -41,7 +41,7 @@ def AddMenu(request):
             vis = False
         newmenu = Menu(text = request.POST['menuname'], visible = vis, number = request.POST['pos'])
         newmenu.save()
-        return redirect('/Menus/')
+        return redirect('/control/menu/')
     
 def EdMenuOut(request, menuid):	
     if request.user.is_authenticated():
@@ -59,4 +59,16 @@ def EditMenu(request, menuid):
             menu.visible = False
         menu.number = request.POST['pos']
         menu.save()
-        return redirect('/Menus/')
+        return redirect('/control/menu/')
+    
+def DelMenu(request, menuid):
+    if request.user.is_authenticated():
+        neww = Menu.objects.get(id=menuid).delete() 
+        return redirect('/control/menu/')
+    
+    
+def ContrMenuOut(request):    
+    if request.user.is_authenticated():
+        menu= Menu.objects.all
+        cont = Context({'MenuText':menu})
+        return render_to_response('control/menu.html', cont, context_instance = RequestContext(request))
