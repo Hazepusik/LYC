@@ -7,7 +7,7 @@ class StorageCell(models.Model):
 	name = models.CharField(max_length=45)
 	filetype = models.CharField(max_length=5)
 	page = models.ForeignKey(Page,on_delete=models.SET_NULL, null=True)
-	subj = models.FileField(upload_to="media/", blank=True)
+	subj = models.FileField(upload_to="Liceum/media/", blank=True)
 	visible = models.BooleanField()
 	
 class StorageCellAdmin(admin.ModelAdmin):
