@@ -5,6 +5,8 @@ from Page.views import *
 from Comments.views import *
 from Answer.views import *
 from Storage.views import *
+from django.views.static import *
+from django.conf import settings
 
 
 # Uncomment the next two lines to enable the admin:
@@ -21,6 +23,7 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     url(r'^News/$', NewsOut ),
     url(r'^Menus/$', MenuOut ),
     url(r'^Pages/(?P<pageid>\w+)/$', PageOut ),
@@ -48,4 +51,10 @@ urlpatterns = patterns('',
     url(r'^control/news/$', ContrNewsOut ),
     url(r'^control/menu/$', ContrMenuOut ),
     url(r'^control/file/add/$', FileToAdd ),
+    url(r'^add_file/$', AddFile ),
+    url(r'^control/galery/add/$', GalerToAdd ),
+    url(r'^add_galery/$', AddGaler ),
+    url(r'^Galery/$', GalerOut ),
+    url(r'^edit_galery/(?P<menuid>\w+)/$', EditGaler ),
+    url(r'^control/galery/edit/(?P<menuid>\w+)/$', GalerToEdit),
 )
