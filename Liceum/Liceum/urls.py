@@ -4,6 +4,7 @@ from Menu.views import *
 from Page.views import *
 from Comments.views import *
 from Answer.views import *
+from Storage.views import *
 
 
 # Uncomment the next two lines to enable the admin:
@@ -46,4 +47,6 @@ urlpatterns = patterns('',
     url(r'^del_news/(?P<newwid>\w+)/$', DelNews ),
     url(r'^control/news/$', ContrNewsOut ),
     url(r'^control/menu/$', ContrMenuOut ),
+    url(r'^control/file/add/$', FileToAdd ),
+    url(r'^add_file/$', AddFile ),
 )

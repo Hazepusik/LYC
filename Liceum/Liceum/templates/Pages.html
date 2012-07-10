@@ -1,6 +1,9 @@
 <body>
 <b>{{Page.name}}</b><br>
 &nbsp;{{Page.text}}<br>
+{%for f in Files %}
+&nbsp;&nbsp;<a href="../../{{f.subj}}">{{f.name}}</a><br>
+{%endfor%}
 <hr>
 
 </body>

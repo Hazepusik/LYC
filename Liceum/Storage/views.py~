@@ -34,7 +34,7 @@ def AddFile(request):
         file = request.FILES['upfile']
         #        f =StorageCell(name = request.POST['name'], visible = vis, subj = file['content'], filetype = get_type(file['filename']), page = Page.objects.get(id = request.POST['list']))
 
-        f =StorageCell(name = request.POST['name'], visible = vis, subj = file, filetype = get_type(file.name), page = Page.objects.get(id = request.POST['list']))
+        f =StorageCell(name = request.POST['name'], visible = vis, subj = file, filetype = get_type(file.str()), page = Page.objects.get(id = request.POST['list']))
 
         f.save()
         return redirect('/control/file/')
