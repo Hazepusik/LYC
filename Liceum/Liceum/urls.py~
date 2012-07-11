@@ -57,6 +57,6 @@ urlpatterns = patterns('',
     url(r'^Galery/$', GalerOut ),
     url(r'^edit_galery/(?P<imgid>\w+)/$', EditGaler ),
     url(r'^control/galery/edit/(?P<imgid>\w+)/$', GalerToEdit),
-    url(r'^del_file(?P<fid>\w+)/$', DelFile),
+    url(r'^del_file/(?P<fid>\w+)/$', DelFile),
     url(r'^control/galery/$', ContrGalerOut ),
 )

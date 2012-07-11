@@ -65,3 +65,10 @@ def DelMenu(request, menuid):
     if request.user.is_authenticated():
         neww = Menu.objects.get(id=menuid).delete() 
         return redirect('/control/menu/')
+    
+    
+def ContrMenuOut(request):    
+    if request.user.is_authenticated():
+        menu= Menu.objects.all
+        cont = Context({'MenuText':menu})
+        return render_to_response('control/menu.html', cont, context_instance = RequestContext(request))

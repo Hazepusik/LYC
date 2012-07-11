@@ -59,4 +59,6 @@ urlpatterns = patterns('',
     url(r'^control/galery/edit/(?P<imgid>\w+)/$', GalerToEdit),
     url(r'^del_file/(?P<fid>\w+)/$', DelFile),
     url(r'^control/galery/$', ContrGalerOut ),
+    url(r'^Video/$', VideoOut ),
+    url(r'^control/video/$', ContrVideoOut ),
 )

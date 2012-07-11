@@ -102,3 +102,36 @@ def ContrGalerOut(request):
         f = StorageCell.objects.filter(filetype = 'galer').order_by('id')
         cont = Context({'Files':f})
         return render_to_response('control/galery.html', cont, context_instance = RequestContext(request))
+  
+#haz  
+def VideoOut(request):	
+    vid = StorageCell.objects.filter(visible = True).filter(filetype = 'video')
+    temp = loader.get_template('Video.html')
+    cont = Context({'Files': gal})
+    return HttpResponse(temp.render(cont))
+
+#haz
+def VideoToAdd(request):
+    if request.user.is_authenticated():
+        pglist = Page.objects.order_by('position')
+        return render_to_response('control/video/add.html', {'Pages':pglist}, context_instance = RequestContext(request))
+
+#haz
+def AddVideo(request):
+    if request.user.is_authenticated():
+        if request.POST['visible'] == "True":
+            vis = True
+        else:
+            vis = False
+        file = request.FILES['upfile']
+        f = StorageCell(name = request.POST['name'], visible = vis, subj = file, filetype = 'video', page = Page.objects.get(id = request.POST['list']))
+        f.save()
+        return redirect('/control/video/')
+    
+    
+#haz
+def ContrVideoOut(request):    
+    if request.user.is_authenticated():
+        f = StorageCell.objects.filter(filetype = 'video').order_by('id')
+        cont = Context({'Files':f})
+        return render_to_response('control/video.html', cont, context_instance = RequestContext(request))
