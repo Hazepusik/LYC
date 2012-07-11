@@ -9,7 +9,7 @@ class Foto(models.Model):
 	subj = models.ImageField(upload_to="fotogalery/", blank=True)
 	visible = models.BooleanField()
 	
-class StorageCellAdmin(admin.ModelAdmin):
+class FotoAdmin(admin.ModelAdmin):
     list_display = ('name','visible')
 
-admin.site.register(StorageCell, StorageCellAdmin)
+admin.site.register(Foto, FotoAdmin)
