@@ -5,7 +5,7 @@ from django.contrib import admin
 class Foto(models.Model):
 	name = models.CharField(max_length=45)
 	text = models.CharField(max_length=150)
-	album = models.ForeignKey(Album, on_delete=models.SET_NULL)
+	album = models.ForeignKey(Album)
 	subj = models.ImageField(upload_to="fotogalery/", blank=True)
 	visible = models.BooleanField()
 	
