@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.template import RequestContext
 from django.shortcuts import render_to_response, redirect
 import mimetypes
-
+import os
 
 from Storage.models import StorageCell
 from Page.models import Page
@@ -51,7 +51,7 @@ def AddGaler(request):
         file = request.FILES['upfile']
         f = StorageCell(name = request.POST['name'], visible = vis, subj = file, filetype = 'galer', page = Page.objects.get(id = request.POST['list']))
         f.save()
-        return redirect('/control/galery/add')
+        return redirect('/control/galery/')
     
 def GalerOut(request):	
     gal = StorageCell.objects.filter(visible = True).filter(filetype = 'galer')
@@ -62,7 +62,9 @@ def GalerOut(request):
 def GalerToEdit(request, imgid):
     if request.user.is_authenticated():
         pglist = Page.objects.order_by('position')
-        return render_to_response('control/galery/edit.html', {'Pages':pglist, 'img':StorageCell.objects.get(id = imgid)}, context_instance = RequestContext(request))
+        img = StorageCell.objects.get(id = imgid)
+        pth = img.subj.path
+        return render_to_response('control/galery/edit.html', {'Pages':pglist, 'img':img, 'pth': pth}, context_instance = RequestContext(request))
 
 
 def EditGaler(request, imgid):
@@ -73,6 +75,30 @@ def EditGaler(request, imgid):
             vis = False
         file = request.FILES['upfile']
         f = StorageCell.objects.get(id=imgid)
-        f = StorageCell(name = request.POST['name'], visible = vis, subj = file, filetype = 'galer', page = Page.objects.get(id = request.POST['list']))
+        f.name = request.POST['name']
+        f.visible = vis
+        f.subj = file
+        if f.subj.path != request.POST['pth']:
+        os.remove(request.POST['pth'])    
+        f.filetype = 'galer'
+        f.page = Page.objects.get(id = request.POST['list'])
         f.save()
-        return redirect('/control/galery/edit/'+str(imgid))
+        return redirect('/control/galery/')
+
+#haz
+def DelFile(request, fid):
+    if request.user.is_authenticated():
+        f = StorageCell.objects.get(id=fid)
+        os.remove(f.subj.path)
+        where = 'file'
+        if f.filetype == 'galer':
+            where = 'galery'
+        f.delete() 
+        return redirect('/control/'+where+'/')
+    
+#haz
+def ContrGalerOut(request):    
+    if request.user.is_authenticated():
+        f = StorageCell.objects.filter(filetype = 'galer').order_by('id')
+        cont = Context({'Files':f})
+        return render_to_response('control/galery.html', cont, context_instance = RequestContext(request))
