@@ -127,6 +127,8 @@ INSTALLED_APPS = (
      'Menu',
      'Storage',
      'Answer',
+     'Albums',
+     'Fotogalery',
      
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
