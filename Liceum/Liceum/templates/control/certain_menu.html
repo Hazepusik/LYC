@@ -1,1 +1,18 @@
-<from method = "post" action = "/Show_Menu/">
+<body>
+	
+{% csrf_token %}
+<a href="../menu/add/">Добавить</a><br>
+<hr>
+<hr>
+{%for menu in MenuText%}
+{{menu.name}} {{menu.dateadd}}	<br>
+&nbsp;&nbsp;{{menu.text}}<br>
+<a href="../../DelMenu/{{menu.id}}">Удалить</a><br>
+<a href="../menu/edit/{{menu.id}}">Редактировать</a><br>
+
+<hr>
+{%endfor%}
+
+</body>
+
+</form>
