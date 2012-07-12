@@ -62,7 +62,10 @@ urlpatterns = patterns('',
     url(r'^Video/$', VideoOut ),
     url(r'^control/video/$', ContrVideoOut ),
     url(r'^control/video/add/$', VideoToAdd ),
-    url(r'^add_video/$', AddGaler ),
+    url(r'^add_video/$', AddVideo ),
     url(r'^edit_video/(?P<vidid>\w+)/$', EditVideo ),
     url(r'^control/video/edit/(?P<vidid>\w+)/$', VideoToEdit),
+    url(r'^control/file/assign/(?P<pgid>\w+)$', PgFileToAdd ),
+    url(r'^assign_file/(?P<pgid>\w+)/$', AddPgFile ),
+    
 )

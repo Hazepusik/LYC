@@ -166,3 +166,20 @@ def EditVideo(request, vidid):
         f.page = Page.objects.get(id = request.POST['list'])
         f.save()
         return redirect('/control/video/')
+    
+#haz   
+def PgFileToAdd(request,pgid):
+    if request.user.is_authenticated():
+        return render_to_response('control/file/assign.html', {'pgid':pgid}, context_instance = RequestContext(request))
+    
+#haz
+def AddPgFile(request, pgid):
+    if request.user.is_authenticated():
+        if request.POST['visible'] == "True":
+            vis = True
+        else:
+            vis = False
+        file = request.FILES['upfile']
+        f =StorageCell(name = request.POST['name'], visible = vis, subj = file, filetype = get_type(file.name), page = Page.objects.get(id = pgid))
+        f.save()
+        return redirect('/control/page/edit/'+pgid+'/')
