@@ -61,4 +61,8 @@ urlpatterns = patterns('',
     url(r'^control/galery/$', ContrGalerOut ),
     url(r'^Video/$', VideoOut ),
     url(r'^control/video/$', ContrVideoOut ),
+    url(r'^control/video/add/$', VideoToAdd ),
+    url(r'^add_video/$', AddVideo ),
+    url(r'^edit_video/(?P<vidid>\w+)/$', EditVideo ),
+    url(r'^control/video/edit/(?P<vidid>\w+)/$', VideoToEdit),
 )

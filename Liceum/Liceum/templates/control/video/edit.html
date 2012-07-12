@@ -1,0 +1,28 @@
+<body>
+
+<form method="post" action="/edit_video/{{vid.id}}/" enctype="multipart/form-data"> 
+
+{% csrf_token %}
+
+<a href="/media/{{vid.subj}}">{{vid.name}}</a><br>
+<input type="hidden" name="pth" value="{{pth}}">
+
+<input type="text" name="name" size="10" maxlength="45" value="">
+<select name="visible" size = “1” >
+<option value="True">Видимо</option> 
+<option {% if not vid.visible %}selected{%endif%}  value="False">Невидимо</option>
+</select>
+
+<select name="list" size = “1”>
+{%for page in Pages%} 
+<option {% if page == vid.page %}selected{%endif%}  value="{{page.id}}">{{page.name}}</option> 
+
+{%endfor%}
+
+</select>
+
+<input type="file" name="upfile" />
+
+<input type="submit" name="btn" value="Save It">
+
+</body>

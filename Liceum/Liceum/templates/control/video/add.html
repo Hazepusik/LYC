@@ -1,0 +1,23 @@
+<form method="post" action="/add_video/" enctype="multipart/form-data"> 
+
+{% csrf_token %}
+
+
+<input type="text" name="name" size="10" maxlength="45" value="">
+
+<select name="visible" size = “1” >
+<option value="True">Видимо</option> 
+<option value="False">Невидимо</option>
+</select>
+
+<select name="list" size = “1”>
+{%for page in Pages%} 
+<option value="{{page.id}}">{{page.name}}</option> 
+{%endfor%}
+</select>
+
+<input type="file" name="upfile" />
+
+<input type="submit" name="btn" value="Submit It" />
+
+</form>

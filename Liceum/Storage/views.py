@@ -78,7 +78,7 @@ def EditGaler(request, imgid):
         f.name = request.POST['name']
         f.visible = vis
         f.subj = file
-        if f.subj.path != request.POST['pth']:
+        if f.subj.path != request.POST['pth'] and (f.subj.path != ''):
             os.remove(request.POST['pth'])    
         f.filetype = 'galer'
         f.page = Page.objects.get(id = request.POST['list'])
@@ -93,6 +93,9 @@ def DelFile(request, fid):
         where = 'file'
         if f.filetype == 'galer':
             where = 'galery'
+        if f.filetype == 'video':
+            where = 'video'
+     
         f.delete() 
         return redirect('/control/'+where+'/')
     
@@ -107,7 +110,7 @@ def ContrGalerOut(request):
 def VideoOut(request):	
     vid = StorageCell.objects.filter(visible = True).filter(filetype = 'video')
     temp = loader.get_template('Video.html')
-    cont = Context({'Files': gal})
+    cont = Context({'Files': vid})
     return HttpResponse(temp.render(cont))
 
 #haz
@@ -135,3 +138,31 @@ def ContrVideoOut(request):
         f = StorageCell.objects.filter(filetype = 'video').order_by('id')
         cont = Context({'Files':f})
         return render_to_response('control/video.html', cont, context_instance = RequestContext(request))
+
+#haz    
+def VideoToEdit(request, vidid):
+    if request.user.is_authenticated():
+        pglist = Page.objects.order_by('position')
+        vid = StorageCell.objects.get(id = vidid)
+        pth = vid.subj.path
+        return render_to_response('control/video/edit.html', {'Pages':pglist, 'vid':vid, 'pth': pth}, context_instance = RequestContext(request))
+
+
+#haz
+def EditVideo(request, vidid):
+    if request.user.is_authenticated():
+        if request.POST['visible'] == "True":
+            vis = True
+        else:
+            vis = False
+        file = request.FILES['upfile']
+        f = StorageCell.objects.get(id=vidid)
+        f.name = request.POST['name']
+        f.visible = vis
+        f.subj = file
+        if (f.subj.path != request.POST['pth']) and (f.subj.path != '')  :
+            os.remove(request.POST['pth'])    
+        f.filetype = 'video'
+        f.page = Page.objects.get(id = request.POST['list'])
+        f.save()
+        return redirect('/control/video/')
