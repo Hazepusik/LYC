@@ -183,3 +183,30 @@ def AddPgFile(request, pgid):
         f =StorageCell(name = request.POST['name'], visible = vis, subj = file, filetype = get_type(file.name), page = Page.objects.get(id = pgid))
         f.save()
         return redirect('/control/page/edit/'+pgid+'/')
+
+#haz
+def FileToEdit(request, fid):
+    if request.user.is_authenticated():
+        pglist = Page.objects.order_by('position')
+        file = StorageCell.objects.get(id = fid)
+        pth = file.subj.path
+        return render_to_response('control/file/edit.html', {'Pages':pglist, 'file':file, 'pth': pth}, context_instance = RequestContext(request))
+
+#haz
+def EditFile(request, fid):
+    if request.user.is_authenticated():
+        if request.POST['visible'] == "True":
+            vis = True
+        else:
+            vis = False
+        file = request.FILES['upfile']
+        f = StorageCell.objects.get(id=fid)
+        f.name = request.POST['name']
+        f.visible = vis
+        f.subj = file
+        if f.subj.path != request.POST['pth'] and (f.subj.path != ''):
+            os.remove(request.POST['pth'])    
+        f.filetype = get_type(file.name)
+        f.page = Page.objects.get(id = request.POST['list'])
+        f.save()
+        return redirect('/control/page/edit/'+ request.POST['list']+'/')

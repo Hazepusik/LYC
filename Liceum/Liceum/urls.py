@@ -67,5 +67,7 @@ urlpatterns = patterns('',
     url(r'^control/video/edit/(?P<vidid>\w+)/$', VideoToEdit),
     url(r'^control/file/assign/(?P<pgid>\w+)/$', PgFileToAdd ),
     url(r'^assign_file/(?P<pgid>\w+)/$', AddPgFile ),
+    url(r'^edit_file/(?P<fid>\w+)/$', EditFile ),
+    url(r'^control/file/edit/(?P<fid>\w+)/$', FileToEdit),
     
 )
