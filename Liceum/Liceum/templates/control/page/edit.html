@@ -29,9 +29,11 @@
 <br><hr>
 <b>Прикрепленные файлы:</b><br>
 {% for f in Files %}
-{{f.name}}<a href="{{f.subj.path}}">Просмотреть</a>
+{{f.name}}<a href="../../../../media/{{f.subj}}">Просмотреть</a>
 <a href="../../../../del_file/{{f.id}}">Удалить</a>
 <a href="../../../file/edit/{{f.id}}">Редактировать</a><br>
 {%endfor%}
 <br><hr>
-<a href="../../../file/assign/{{Page.id}}/">Добавить</a>
+<a href="../../../file/assign/{{Page.id}}/">Добавить</a><br>
+<a href="../../../file/pictopage/{{Page.id}}/">Прикрепить картинку</a><br>
+<b>{{errorpath}}</b>

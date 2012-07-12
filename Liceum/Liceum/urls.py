@@ -69,5 +69,8 @@ urlpatterns = patterns('',
     url(r'^assign_file/(?P<pgid>\w+)/$', AddPgFile ),
     url(r'^edit_file/(?P<fid>\w+)/$', EditFile ),
     url(r'^control/file/edit/(?P<fid>\w+)/$', FileToEdit),
+    url(r'^control/file/pictopage/(?P<pgid>\w+)/$', PicFileToAdd ),
+    url(r'^addpic_file/(?P<pgid>\w+)/$', AddPicFile ),
+    
     
 )
