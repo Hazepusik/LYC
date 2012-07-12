@@ -1,18 +1,16 @@
+<form>
 <body>
-	
-{% csrf_token %}
-<a href="../menu/add/">Добавить</a><br>
-<hr>
-<hr>
-{%for menu in MenuText%}
-{{menu.name}} {{menu.dateadd}}	<br>
-&nbsp;&nbsp;{{menu.text}}<br>
-<a href="../../DelMenu/{{menu.id}}">Удалить</a><br>
-<a href="../menu/edit/{{menu.id}}">Редактировать</a><br>
 
-<hr>
+{%for page in ListText%}
+
+<b>{{Page.name}}</b><br>
+&nbsp;{{Page.text}}<br>
+
+<p> <a href="../control/page/add"> Добавить новую страницу </a> </p>
+<p> <a href="../del_page/{{pageid}}"> Удалить страницу </a> </p>
+<p> <a href="../control/page/edit/{{pageid}}"> Редактировать страницу </a> </p>
+
 {%endfor%}
 
 </body>
-
 </form>
