@@ -78,4 +78,4 @@ def ShowMenu(request, menuid):
 		menu = Menu.Objects.get(id = menuid)
 		list = Pages.Objects.filter(menupoint = menu)
 		cont = Context({'MenuText':menu,'ListText':list})
-		return render_to_response('C:/users/asus/LYC/liceum/liceum/templates/control/certain_menu.html', cont, context_instance = RequestContext(request))
+		return render_to_response('control/menu.html', cont, context_instance = RequestContext(request))
