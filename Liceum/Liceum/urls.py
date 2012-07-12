@@ -46,5 +46,5 @@ urlpatterns = patterns('',
     url(r'^del_news/(?P<newwid>\w+)/$', DelNews ),
     url(r'^control/news/$', ContrNewsOut ),
     url(r'^control/menu/$', ContrMenuOut ),
-    url(r'^control/page/(?P<menuid>\w+)/$', ShowMenu),
+    url(r'^control/certain_menu/(?P<menuid>\w+)/$', ShowMenu),
 )
