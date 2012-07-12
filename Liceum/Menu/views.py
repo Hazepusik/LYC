@@ -73,8 +73,9 @@ def ContrMenuOut(request):
         cont = Context({'MenuText':menu})
         return render_to_response('control/menu.html', cont, context_instance = RequestContext(request))
 		
-def ShowMenu(request, menuid):
+ def ShowMenu(request, menuid):
     if request.user.is_authenticated():
 	    menu = Menu.Objects.get(id = menuid)
-		cont = Context({'MenuText':menu})
+		list = Pages.Objects.filter(menupoint = menu)
+		cont = Context({'MenuText':menu,'ListText':list})
 		return render_to_response('control/certain_menu.html', cont, context_instance = RequestContext(request))
