@@ -1,6 +1,8 @@
 # Create your views here.
-
+# -*- coding: utf-8 -*-
+from BeautifulSoup import BeautifulSoup
 from django.db.models import Q
+from django.http import HttpResponseRedirect
 from django.template import loader, Context
 from django.http import HttpResponse
 from django.template import RequestContext
@@ -10,6 +12,7 @@ import os
 
 from Storage.models import StorageCell
 from Page.models import Page
+from Menu.models import Menu
 
 
 def get_type(fname):
@@ -213,7 +216,7 @@ def EditFile(request, fid):
         f.filetype = get_type(file.name)
         f.page = Page.objects.get(id = request.POST['list'])
         f.save()
-        return redirect('/control/page/edit/'+ request.POST['list']+'/')
+        return render('/control/page/edit/'+ request.POST['list']+'/')
     
 #haz   
 def PicFileToAdd(request,pgid):
@@ -225,18 +228,21 @@ def AddPicFile(request, pgid):
     if request.user.is_authenticated():
         file = request.FILES['upfile']
         if get_type(file.name) == 'ima':
-            f =StorageCell(name = request.POST['name'], visible = False, subj = file, filetype = 'picpg', page = Page.objects.get(id = pgid))
+            f = StorageCell(name = request.POST['name'], visible = False, subj = file, filetype = 'picpg', page = Page.objects.get(id = pgid))
             f.save()
-            errorpath = 'Изображение успешно добавлено: '+str(f.subj)
+            return redirect('/control/page/edit/'+pgid+'/' )
         else:
-            errorpath = 'Этот файл не изображением'
-        return redirect('/control/page/edit/'+pgid+'/', {'pgid':pgid, 'errorpath':errorpath} )             
+            err = 'Файл не является изображением'
+            temp = loader.get_template('error.html')
+            cont = Context({'errtext': err})
+            return HttpResponse(temp.render(cont))                   
 
 
 def SearchWord(str):
-    menus = Menu.objects.filter( Q(visible = True) | Q(name = 'left') ).exclude(name = 'video')
+    menus = Menu.objects.filter( Q(visible = True) | Q(text = 'left') ).exclude(text = 'video')
+    pages = Page.objects.none()
     for menu in menus:
-        pages = pages | Page.objects.filter(Q(visible = True)).filter(menupoint = menu).filter( Q(text__contains=str) | Q(name__contains=str) )
+        pages = pages | Page.objects.filter(Q(visible = True)).filter(menupoint = menu) #.filter( Q(text__contains=str) | Q(name__contains=str) )
     for page in pages:
         print page.name
         

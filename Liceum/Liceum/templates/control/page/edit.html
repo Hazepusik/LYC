@@ -29,11 +29,12 @@
 <br><hr>
 <b>Прикрепленные файлы:</b><br>
 {% for f in Files %}
-{{f.name}}<a href="../../../../media/{{f.subj}}">Просмотреть</a>
-<a href="../../../../del_file/{{f.id}}">Удалить</a>
+{{f.name}}{% if f.filetype == 'picpg' %}  - Прикрепленное изображение{% endif %}<br>
+{% if f.filetype == 'picpg' %}<a href="../../../../media/{{f.subj}}">Просмотреть</a><br> {% endif %}
+<a href="../../../../del_file/{{f.id}}">Удалить</a><br>
 <a href="../../../file/edit/{{f.id}}">Редактировать</a><br>
 {%endfor%}
 <br><hr>
 <a href="../../../file/assign/{{Page.id}}/">Добавить</a><br>
-<a href="../../../file/pictopage/{{Page.id}}/">Прикрепить картинку</a><br>
+<a href="../../../file/pictopage/{{Page.id}}/">Прикрепить изображение</a><br>
 <b>{{errorpath}}</b>
