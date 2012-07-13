@@ -1,5 +1,6 @@
 # Create your views here.
 # -*- coding: utf-8 -*-
+from django.db.models import Q
 from django.template import loader, Context
 from django.http import HttpResponse
 from django.template import RequestContext
@@ -230,3 +231,14 @@ def AddPicFile(request, pgid):
         else:
             errorpath = 'Этот файл не изображением'
         return redirect('/control/page/edit/'+pgid+'/', {'pgid':pgid, 'errorpath':errorpath} )             
+
+
+def SearchWord(str):
+    menus = Menu.objects.filter( Q(visible = True) | Q(name = 'left') ).exclude(name = 'video')
+    for menu in menus:
+        pages = pages | Page.objects.filter(Q(visible = True)).filter(menupoint = menu).filter( Q(text__contains=str) | Q(name__contains=str) )
+    for page in pages:
+        print page.name
+        
+        
+SearchWord('you')
