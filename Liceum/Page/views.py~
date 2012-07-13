@@ -6,14 +6,16 @@ from django.shortcuts import render_to_response, redirect
 
 from Page.models import Page
 from Menu.models import Menu
+from Storage.models import StorageCell
 #optimization and algorithmization
 
 def PageOut(request,pageid):	
-    page = Page.objects.filter(visible = True).get(id = pageid)
+    pg = Page.objects.filter(visible = True).get(id = pageid)
+    files = StorageCell.objects.filter(visible = True).filter(page = pg)
  #   if request.user.is_authenticated():
   #      page = Page.objects.get(id = pageid)
     temp = loader.get_template('Pages.html')
-    cont = Context({'Page':page})
+    cont = Context({'Page':pg, 'Files': files})
     return HttpResponse(temp.render(cont))
 
 def AddPage(request):

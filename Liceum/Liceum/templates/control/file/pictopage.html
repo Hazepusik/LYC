@@ -1,0 +1,12 @@
+<form method="post" action="/addpic_file/{{pgid}}/" enctype="multipart/form-data"> 
+
+{% csrf_token %}
+
+
+<input type="text" name="name" size="10" maxlength="45" value="">
+
+<input type="file" name="upfile" />
+
+<input type="submit" name="btn" value="Submit It" />
+
+</form>

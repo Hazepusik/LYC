@@ -1,0 +1,16 @@
+<body>
+	
+{% csrf_token %}
+
+<a href="../galery/add/">Добавить</a><br>
+<hr>
+<hr>	
+{%for img in Files %}
+<img src="/media/{{img.subj}}" border = 0 width =400 height = 300><br>
+&nbsp;&nbsp;{{img.name}}<br>
+<a href="../../del_file/{{img.id}}">Удалить</a><br>
+<a href="../galery/edit/{{img.id}}">Редактировать</a><br>
+{%endfor%}
+<hr>
+
+</body>

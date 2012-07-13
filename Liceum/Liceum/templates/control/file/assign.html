@@ -1,0 +1,17 @@
+<form method="post" action="/assign_file/{{pgid}}/" enctype="multipart/form-data"> 
+
+{% csrf_token %}
+
+
+<input type="text" name="name" size="10" maxlength="45" value="">
+
+<select name="visible" size = “1” >
+<option value="True">Видимо</option> 
+<option value="False">Невидимо</option>
+</select>
+
+<input type="file" name="upfile" />
+
+<input type="submit" name="btn" value="Submit It" />
+
+</form>

@@ -4,6 +4,9 @@ from Menu.views import *
 from Page.views import *
 from Comments.views import *
 from Answer.views import *
+from Storage.views import *
+from django.views.static import *
+from django.conf import settings
 
 
 # Uncomment the next two lines to enable the admin:
@@ -20,6 +23,7 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     url(r'^News/$', NewsOut ),
     url(r'^Menus/$', MenuOut ),
     url(r'^Pages/(?P<pageid>\w+)/$', PageOut ),
@@ -45,4 +49,28 @@ urlpatterns = patterns('',
     url(r'^edit_news/(?P<newwid>\w+)/$', EditNews ),
     url(r'^del_news/(?P<newwid>\w+)/$', DelNews ),
     url(r'^control/news/$', ContrNewsOut ),
+    url(r'^control/menu/$', ContrMenuOut ),
+    url(r'^control/file/add/$', FileToAdd ),
+    url(r'^add_file/$', AddFile ),
+    url(r'^control/galery/add/$', GalerToAdd ),
+    url(r'^add_galery/$', AddGaler ),
+    url(r'^Galery/$', GalerOut ),
+    url(r'^edit_galery/(?P<imgid>\w+)/$', EditGaler ),
+    url(r'^control/galery/edit/(?P<imgid>\w+)/$', GalerToEdit),
+    url(r'^del_file/(?P<fid>\w+)/$', DelFile),
+    url(r'^control/galery/$', ContrGalerOut ),
+    url(r'^Video/$', VideoOut ),
+    url(r'^control/video/$', ContrVideoOut ),
+    url(r'^control/video/add/$', VideoToAdd ),
+    url(r'^add_video/$', AddVideo ),
+    url(r'^edit_video/(?P<vidid>\w+)/$', EditVideo ),
+    url(r'^control/video/edit/(?P<vidid>\w+)/$', VideoToEdit),
+    url(r'^control/file/assign/(?P<pgid>\w+)/$', PgFileToAdd ),
+    url(r'^assign_file/(?P<pgid>\w+)/$', AddPgFile ),
+    url(r'^edit_file/(?P<fid>\w+)/$', EditFile ),
+    url(r'^control/file/edit/(?P<fid>\w+)/$', FileToEdit),
+    url(r'^control/file/pictopage/(?P<pgid>\w+)/$', PicFileToAdd ),
+    url(r'^assign_file/(?P<pgid>\w+)/$', AddPicFile ),
+    
+    
 )

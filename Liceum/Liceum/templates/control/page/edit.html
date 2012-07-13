@@ -12,9 +12,28 @@
 {%endfor%}
 </select>
 
+<select name="visible" size = “1” >
+<option value="True">Видимо</option> 
+<option {% if not vid.visible %}selected{%endif%}  value="False">Невидимо</option>
+</select>
+
 <textarea name="txt" cols="15" rows="10">{{Page.text}}</textarea>
 <input type="text" name="pos" size="10" maxlength="5" value="{{Page.position}}">
 
 <input type="submit" name="btn" value="Save It">
 
 </form>
+
+
+
+<br><hr>
+<b>Прикрепленные файлы:</b><br>
+{% for f in Files %}
+{{f.name}}<a href="../../../../media/{{f.subj}}">Просмотреть</a>
+<a href="../../../../del_file/{{f.id}}">Удалить</a>
+<a href="../../../file/edit/{{f.id}}">Редактировать</a><br>
+{%endfor%}
+<br><hr>
+<a href="../../../file/assign/{{Page.id}}/">Добавить</a><br>
+<a href="../../../file/pictopage/{{Page.id}}/">Прикрепить картинку</a><br>
+<b>{{errorpath}}</b>

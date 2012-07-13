@@ -1,0 +1,17 @@
+<body>
+	
+{% csrf_token %}
+
+<a href="../video/add/">Добавить</a><br>
+<hr>
+<hr>	
+{%for vid in Files %}
+<b></b><a href="/media/{{vid.subj}}">{{vid.name}}</a></b><br>
+&nbsp;&nbsp;{{vid.name}}<br>
+<a href="../../del_file/{{vid.id}}">Удалить</a><br>
+<a href="../video/edit/{{vid.id}}">Редактировать</a><br>
+<hr>
+{%endfor%}
+<hr>
+
+</body>
