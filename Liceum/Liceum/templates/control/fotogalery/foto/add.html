@@ -1,4 +1,4 @@
-<form method="post" action="/add_video/" enctype="multipart/form-data"> 
+<form method="post" action="/add_foto/{{albid}}/"  enctype="multipart/form-data"> 
 
 {% csrf_token %}
 
@@ -10,14 +10,11 @@
 <option value="False">Невидимо</option>
 </select>
 
-<select name="list" size = “1”>
-{%for page in Pages%} 
-<option value="{{page.id}}">{{page.name}}</option> 
-{%endfor%}
-</select>
+<input type="text" name="text" size="10" maxlength="150" value="">
 
 <input type="file" name="upfile" >
 
-<input type="submit" name="btn" value="Submit It" >
+<input type="submit" name="btn" value="Submit It" />
 
 </form>
+

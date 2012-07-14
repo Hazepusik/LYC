@@ -1,0 +1,11 @@
+<body>
+
+
+{%for alb in Albums %}
+<a href="album/{{alb.id}}">{{alb.name}}</a><br>
+&nbsp;&nbsp;{{alb.text}}<br>
+<hr>
+{%endfor%}
+
+
+</body>

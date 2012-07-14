@@ -5,6 +5,9 @@ from Page.views import *
 from Comments.views import *
 from Answer.views import *
 from Storage.views import *
+from Albums.views import *
+from Fotogalery.views import *
+
 from django.views.static import *
 from django.conf import settings
 
@@ -71,6 +74,17 @@ urlpatterns = patterns('',
     url(r'^control/file/edit/(?P<fid>\w+)/$', FileToEdit),
     url(r'^control/file/pictopage/(?P<pgid>\w+)/$', PicFileToAdd ),
     url(r'^addpic_file/(?P<pgid>\w+)/$', AddPicFile ),
-    
+    url(r'^control/fotogalery/album/add/$', AlbumToAdd),
+    url(r'^add_album/$', AddAlbum ),
+    url(r'^control/fotogalery/$', ContrFotogaleryOut ),
+    url(r'^del_album/(?P<albid>\w+)/$', DelAlbum),
+    url(r'^Fotoalery/$', FotogaleryOut ),
+    url(r'^Albums/(?P<albid>\w+)/$', AlbumOut ),     
+    url(r'^control/fotogalery/album/(?P<albid>\w+)/$', ContrAlbumOut ),
+    url(r'^control/fotogalery/foto/add/(?P<albid>\w+)/$', FotoToAdd ),
+    url(r'^add_foto/(?P<albid>\w+)/$', AddFoto ),
+    url(r'^del_foto/(?P<fid>\w+)/$', DelFoto),
+    url(r'^control/fotogalery/foto/edit/(?P<fid>\w+)/$', FotoToEdit ),
+    url(r'^edit_foto/(?P<fid>\w+)/$', EditFoto ),
     
 )

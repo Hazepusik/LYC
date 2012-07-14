@@ -1,6 +1,6 @@
 # Create your views here.
 # -*- coding: utf-8 -*-
-from BeautifulSoup import BeautifulSoup
+import re
 from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.template import loader, Context
@@ -232,7 +232,7 @@ def AddPicFile(request, pgid):
             f.save()
             return redirect('/control/page/edit/'+pgid+'/' )
         else:
-            err = 'Файл не является изображением'
+            err = 'File isn''t an image'
             temp = loader.get_template('error.html')
             cont = Context({'errtext': err})
             return HttpResponse(temp.render(cont))                   
@@ -244,7 +244,7 @@ def SearchWord(str):
     for menu in menus:
         pages = pages | Page.objects.filter(Q(visible = True)).filter(menupoint = menu) #.filter( Q(text__contains=str) | Q(name__contains=str) )
     for page in pages:
-        print page.name
+        ultimate_regexp = "(?i)<\/?\w+((\s+\w+(\s*=\s*(?:\".*?\"|'.*?'|[^'\">\s]+))?)+\s*|\s*)\/?>"
+        p = re.compile(r'<.*?>')
+        p.sub('', html)
         
-        
-SearchWord('you')

@@ -110,11 +110,6 @@ def AddFoto(request, fid):
             vis = False
         file = request.FILES['upfile']
         #FIXIT
-        f = Foto.objects.get(id = fid)
-        f.name = request.POST['name']
-        f.visible = vis
-        f.subj = file
-        f.text = request.POST['text']
-        albid = f.album.id
+        f = Foto(name = request.POST['name'], visible = vis, subj = file, text = request.POST['text'], album = Album.objects.get(id=albid))
         f.save()
         return redirect('/control/fotogalery/album/'+albid+'/')

@@ -1,0 +1,18 @@
+<form method="post" action="/add_album/"> 
+
+{% csrf_token %}
+
+
+<input type="text" name="name" size="10" maxlength="45" value="">
+
+<select name="visible" size = “1” >
+<option value="True">Видимо</option> 
+<option value="False">Невидимо</option>
+</select>
+
+<input type="text" name="text" size="10" maxlength="150" value="">
+
+<input type="submit" name="btn" value="Submit It" />
+
+</form>
+

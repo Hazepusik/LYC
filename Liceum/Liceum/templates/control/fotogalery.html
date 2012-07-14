@@ -1,0 +1,16 @@
+<body>
+	
+{% csrf_token %}
+
+<a href="album/add/">Добавить</a><br>
+<hr>
+<hr>	
+
+{%for alb in Albums %}
+&nbsp;&nbsp;{{alb.name}}<br>
+<a href="../../del_album/{{alb.id}}">Удалить</a><br>
+<a href="album/edit/{{alb.id}}">Редактировать</a><br>
+{%endfor%}
+<hr>
+
+</body>
