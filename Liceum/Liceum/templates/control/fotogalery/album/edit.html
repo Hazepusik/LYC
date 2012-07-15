@@ -1,0 +1,18 @@
+<form method="post" action="/edit_album/{{alb.id}}/"> 
+
+{% csrf_token %}
+
+
+<input type="text" name="name" size="10" maxlength="45" value="{{alb.name}}">
+
+<select name="visible" size = “1” >
+<option value="True">Видимо</option> 
+<option {% if not alb.visible %}selected{%endif%} value="False">Невидимо</option>
+</select>
+
+<input type="text" name="text" size="10" maxlength="150" value="{{alb.text}}">
+
+<input type="submit" name="btn" value="Submit It" />
+
+</form>
+

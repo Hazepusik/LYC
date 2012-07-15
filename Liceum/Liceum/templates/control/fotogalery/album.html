@@ -2,17 +2,17 @@
 	
 {% csrf_token %}
 
-<a href="../foto/add/{{album.id}}">Добавить фото</a><br>
+<a href="../../foto/add/{{album.id}}">Добавить фото</a><br>
 <hr>
 <hr>	
 
 {%for f in Fotos %}
 &nbsp;&nbsp;{{f.name}}<br>
-Path = /fotogalery/{{foto.subj}}<br>
+Path = /media/{{f.subj}}<br>
 &nbsp;&nbsp;{{foto.text}}<br>
 
-<a href="../../del_foto/{{f.id}}">Удалить</a><br>
-<a href="../foto/{{f.id}}">Редактировать</a><br>
+<a href="../../../../../../del_foto/{{f.id}}">Удалить</a><br>
+<a href="../../foto/edit/{{f.id}}">Редактировать</a><br>
 {%endfor%}
 <hr>
 

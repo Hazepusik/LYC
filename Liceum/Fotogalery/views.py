@@ -25,7 +25,7 @@ def AddAlbum(request):
             vis = False
         f = Album(name = request.POST['name'], visible = vis, text = request.POST['text'])
         f.save()
-        return redirect('/control/fotogalery/album/'+f.id+'/')
+        return redirect('/control/fotogalery/album/'+str(f.id)+'/')
 
 #haz
 def ContrFotogaleryOut(request):    
@@ -39,7 +39,7 @@ def ContrFotogaleryOut(request):
 def DelAlbum(request, albid):
     if request.user.is_authenticated():
         alb = Album.objects.get(id=albid)
-        fs = Fotogalery.objects.filter(album =alb)
+        fs = Foto.objects.filter(album =alb)
         for f in fs:
             os.remove(f.subj.path)
             f.delete() 
@@ -85,24 +85,25 @@ def AddFoto(request, albid):
         #FIXIT
         f = Foto(name = request.POST['name'], visible = vis, subj = file, text = request.POST['text'], album = Album.objects.get(id=albid))
         f.save()
-        return redirect('/control/fotogalery/album/'+albid+'/')
+        return redirect('/control/fotogalery/album/'+str(albid)+'/')
     
 #haz
 def DelFoto(request, fid):
     if request.user.is_authenticated():
-        fs = Fotogalery.objects.get(id = fid)
+        fs = Foto.objects.get(id = fid)
         albid = fs.album.id
-        os.remove(f.subj.path)
-        f.delete() 
-        return redirect('/control/fotogalery/album/'+albid+'/')
+        os.remove(fs.subj.path)
+        fs.delete() 
+        return redirect('/control/fotogalery/album/'+str(albid)+'/')
     
 #haz
 def FotoToEdit(request, fid):
     if request.user.is_authenticated():
-        return render_to_response('control/fotogalery/foto/edit.html', {'fid':fid}, context_instance = RequestContext(request))
+        f = Foto.objects.get(id = fid)
+        return render_to_response('control/fotogalery/foto/edit.html', {'fid':fid, 'foto' : f}, context_instance = RequestContext(request))
 
 #haz
-def AddFoto(request, fid):
+def EditFoto(request, fid):
     if request.user.is_authenticated():
         if request.POST['visible'] == "True":
             vis = True
@@ -117,4 +118,24 @@ def AddFoto(request, fid):
         f.text = request.POST['text']
         albid = f.album.id
         f.save()
-        return redirect('/control/fotogalery/album/'+albid+'/')
+        return redirect('/control/fotogalery/album/'+str(albid)+'/')
+
+#haz
+def AlbumToEdit(request, albid):
+    if request.user.is_authenticated():
+        alb = Album.objects.get(id = albid)
+        return render_to_response('control/fotogalery/album/edit.html', {'alb' : alb}, context_instance = RequestContext(request))
+    
+#haz
+def EditAlbum(request, albid):
+    if request.user.is_authenticated():
+        if request.POST['visible'] == "True":
+            vis = True
+        else:
+            vis = False
+        f = Album.objects.get(id = albid)
+        f.name = request.POST['name']
+        f.visible = vis
+        f.text = request.POST['text']
+        f.save()
+        return redirect('/control/fotogalery/album/'+str(f.id)+'/')

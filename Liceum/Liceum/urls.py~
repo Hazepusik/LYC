@@ -84,7 +84,8 @@ urlpatterns = patterns('',
     url(r'^control/fotogalery/foto/add/(?P<albid>\w+)/$', FotoToAdd ),
     url(r'^add_foto/(?P<albid>\w+)/$', AddFoto ),
     url(r'^del_foto/(?P<fid>\w+)/$', DelFoto),
-    url(r'^control/fotogalery/foto/edit/(?P<albid>\w+)/$', FotoToEdit ),
-    url(r'^edit_foto/(?P<albid>\w+)/$', EditFoto ),
-    
+    url(r'^control/fotogalery/foto/edit/(?P<fid>\w+)/$', FotoToEdit ),
+    url(r'^edit_foto/(?P<fid>\w+)/$', EditFoto ),
+    url(r'^control/fotogalery/album/edit/(?P<albid>\w+)/$', AlbumToEdit),
+    url(r'^edit_album/(?P<albid>\w+)/$', EditAlbum),
 )

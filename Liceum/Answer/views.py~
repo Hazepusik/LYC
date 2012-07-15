@@ -10,7 +10,7 @@ from Answer.models import Answer
 
 
 def AnsToAdd(request, comid):	
-    return render_to_response('control/addanswer.html', {'comid':comid}, context_instance = RequestContext(request))
+    return render_to_response('control/answer/add.html', {'comid':comid}, context_instance = RequestContext(request))
 
 def AddAns(request, comid):
     if request.POST['visible'] == "True":
