@@ -12,7 +12,10 @@
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ans.text}}<br>				
 		{%endif%}
 	{%endfor%}
-	<a href="../../../del_comment/{{comm.id}}">Удалить</a><br>
+	<a href="../../../del_comment/{{comm.id}}">Удалить комментарий</a>
+	&nbsp;<a href="../../answer/add/{{comm.id}}">Добавить ответ</a>
+	&nbsp;<a href="../../answer/edit/{{comm.id}}">Редактировать ответ</a>
+	&nbsp;<a href="../../../del_answer/{{comm.id}}">Удалить ответ</a><br>
 	<hr>
 {%endfor%}
 

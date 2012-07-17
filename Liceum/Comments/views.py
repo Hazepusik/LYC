@@ -13,11 +13,7 @@ def CommToAdd(request, whom):
     return render_to_response('addcomment.html', {'whom':whom}, context_instance = RequestContext(request))
 
 def AddComm(request, whom):
-    if request.POST['visible'] == "True":
-        vis = True
-    else:
-        vis = False
-    comm = Comment(text = request.POST['txt'], name = request.POST['name'], visible = vis, author = request.POST['author'], mailback = request.POST['mail'], thread = whom)
+    comm = Comment(text = request.POST['txt'], name = request.POST['name'], visible = True, author = request.POST['author'], mailback = request.POST['mail'], thread = whom)
     comm.save()
     return redirect('/comments/'+whom+'/')
 
@@ -42,7 +38,7 @@ def CommOut(reqest, whom):
 def ContrCommOut(request, whom):
     if request.user.is_authenticated():
         comm = Comment.objects.filter(thread = whom).order_by('dateadd')
-        ans = Answer.object.all
+        ans = Answer.objects.all()
         cont = Context({'comments':comm, 'answers':ans})
         return render_to_response('control/comments.html', cont, context_instance = RequestContext(request))
     
