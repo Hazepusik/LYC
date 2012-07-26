@@ -39,6 +39,6 @@ def ContrCommOut(request, whom):
     if request.user.is_authenticated():
         comm = Comment.objects.filter(thread = whom).order_by('dateadd')
         ans = Answer.objects.all()
-        cont = Context({'comments':comm, 'answers':ans})
+        cont = Context({'comments':comm, 'answers':ans, 'isans':False})
         return render_to_response('control/comments.html', cont, context_instance = RequestContext(request))
     

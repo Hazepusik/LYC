@@ -6,16 +6,17 @@
 	<b>{{comm.name}} </b>    Author: {{comm.author}}     on {{comm.dateadd}} <br>
 	&nbsp;&nbsp;{{comm.text}}<br>
 	{{comm.mailback}}<br>
+	<a href="../../../del_comment/{{comm.id}}">Удалить комментарий</a><br>
 	{%for ans in answers%}
 		{% if ans.parent.id == comm.id %}
 			&nbsp;&nbsp;&nbsp;&nbsp;<b>{{ans.name}} </b>    Author: {{ans.author}}     on {{ans.dateadd}} <br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ans.text}}<br>				
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ans.text}}<br>	
+			&nbsp;<a href="../../answer/edit/{{comm.id}}">Редактировать ответ</a>
+			&nbsp;<a href="../../../del_answer/{{comm.id}}">Удалить ответ</a><br>			
 		{%endif%}
 	{%endfor%}
-	<a href="../../../del_comment/{{comm.id}}">Удалить комментарий</a>
 	&nbsp;<a href="../../answer/add/{{comm.id}}">Добавить ответ</a>
-	&nbsp;<a href="../../answer/edit/{{comm.id}}">Редактировать ответ</a>
-	&nbsp;<a href="../../../del_answer/{{comm.id}}">Удалить ответ</a><br>
+
 	<hr>
 {%endfor%}
 
