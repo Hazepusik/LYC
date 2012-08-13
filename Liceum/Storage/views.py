@@ -15,6 +15,11 @@ from Page.models import Page
 from Menu.models import Menu
 
 
+def del_tags_from_str(str):
+    ultimate_regexp = "(?i)<\/?\w+((\s+\w+(\s*=\s*(?:\".*?\"|'.*?'|[^'\">\s]+))?)+\s*|\s*)\/?>"
+    return re.sub(ultimate_regexp, "", str)
+
+
 def get_type(fname):
     mimetypes.init()
     try:
