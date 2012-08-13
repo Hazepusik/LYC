@@ -245,6 +245,6 @@ def SearchWord(str):
         pages = pages | Page.objects.filter(Q(visible = True)).filter(menupoint = menu) #.filter( Q(text__contains=str) | Q(name__contains=str) )
     for page in pages:
         ultimate_regexp = "(?i)<\/?\w+((\s+\w+(\s*=\s*(?:\".*?\"|'.*?'|[^'\">\s]+))?)+\s*|\s*)\/?>"
-        p = re.compile(r'<.*?>')
+        p = re.compile(ultimate_regex)
         p.sub('', html)
         

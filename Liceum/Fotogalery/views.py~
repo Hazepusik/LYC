@@ -83,9 +83,17 @@ def AddFoto(request, albid):
             vis = False
         file = request.FILES['upfile']
         #FIXIT
-        f = Foto(name = request.POST['name'], visible = vis, subj = file, text = request.POST['text'], album = Album.objects.get(id=albid))
-        f.save()
-        return redirect('/control/fotogalery/album/'+str(albid)+'/')
+        if get_type(file.name) == 'ima':
+            f = Foto(name = request.POST['name'], visible = vis, subj = file, text = request.POST['text'], album = Album.objects.get(id=albid))
+            f.save()
+            return redirect('/control/fotogalery/album/'+str(albid)+'/')
+        else:
+            err = 'File isn''t an image'
+            temp = loader.get_template('error.html')
+            cont = Context({'errtext': err})
+            return HttpResponse(temp.render(cont)) 
+        
+
     
 #haz
 def DelFoto(request, fid):
@@ -111,14 +119,22 @@ def EditFoto(request, fid):
             vis = False
         file = request.FILES['upfile']
         #FIXIT
-        f = Foto.objects.get(id = fid)
-        f.name = request.POST['name']
-        f.visible = vis
-        f.subj = file
-        f.text = request.POST['text']
-        albid = f.album.id
-        f.save()
-        return redirect('/control/fotogalery/album/'+str(albid)+'/')
+        if get_type(file.name) == 'ima':
+            f = Foto.objects.get(id = fid)
+            f.name = request.POST['name']
+            f.visible = vis
+            f.subj = file
+            f.text = request.POST['text']
+            albid = f.album.id
+            f.save()
+            return redirect('/control/fotogalery/album/'+str(albid)+'/')
+        else:
+            err = 'File isn''t an image'
+            temp = loader.get_template('error.html')
+            cont = Context({'errtext': err})
+            return HttpResponse(temp.render(cont)) 
+        
+
 
 #haz
 def AlbumToEdit(request, albid):
