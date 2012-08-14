@@ -243,13 +243,25 @@ def AddPicFile(request, pgid):
             return HttpResponse(temp.render(cont))                   
 
 
-def SearchWord(str):
+def SearchWord(word):
     menus = Menu.objects.filter( Q(visible = True) | Q(text = 'left') ).exclude(text = 'video')
     pages = Page.objects.none()
+    pgs = []
+    txt = []
     for menu in menus:
         pages = pages | Page.objects.filter(Q(visible = True)).filter(menupoint = menu) #.filter( Q(text__contains=str) | Q(name__contains=str) )
     for page in pages:
-        ultimate_regexp = "(?i)<\/?\w+((\s+\w+(\s*=\s*(?:\".*?\"|'.*?'|[^'\">\s]+))?)+\s*|\s*)\/?>"
-        p = re.compile(ultimate_regex)
-        p.sub('', html)
+        str = page.title+' '+del_tags_from_str(page.text)
+        pos = str.find(word)
+        if pos != -1 :
+            pgs.add(page.id)
+            be = 0
+            en = pos+10
+            if pos-10>0:
+                be = pos-10
+            if en>len(str):
+                en = -1
+            txt.add(str[be:en])
+            
+            
         
