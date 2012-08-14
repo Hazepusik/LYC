@@ -91,4 +91,6 @@ urlpatterns = patterns('',
     url(r'^edit_album/(?P<albid>\w+)/$', EditAlbum),
     url(r'^control/answer/edit/(?P<comid>\w+)/$', AnsToEdit ),
     url(r'^edit_answer/(?P<comid>\w+)/$', EditAns ),
+    url(r'^Search/$', WordToSearch ),  
+    url(r'^search_word/$', SearchWord ),
 )

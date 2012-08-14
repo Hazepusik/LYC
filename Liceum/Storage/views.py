@@ -240,28 +240,47 @@ def AddPicFile(request, pgid):
             err = 'File isn''t an image'
             temp = loader.get_template('error.html')
             cont = Context({'errtext': err})
-            return HttpResponse(temp.render(cont))                   
+            return HttpResponse(temp.render(cont))  
+        
+  
+class pg(object):
+	def __init__(self, id=None,  txt=None):
+		self.id = id
+		self.txt = txt
 
-
-def SearchWord(word):
+      
+def SearchWord(request):
     menus = Menu.objects.filter( Q(visible = True) | Q(text = 'left') ).exclude(text = 'video')
     pages = Page.objects.none()
-    pgs = []
+    id = []
     txt = []
+    pgs = []
+    word = request.POST['find']
+
     for menu in menus:
         pages = pages | Page.objects.filter(Q(visible = True)).filter(menupoint = menu) #.filter( Q(text__contains=str) | Q(name__contains=str) )
     for page in pages:
         str = page.title+' '+del_tags_from_str(page.text)
         pos = str.find(word)
         if pos != -1 :
-            pgs.add(page.id)
+            id.append(page.id)
             be = 0
             en = pos+10
             if pos-10>0:
                 be = pos-10
             if en>len(str):
                 en = -1
-            txt.add(str[be:en])
+            txt.append(str[be:en])
+    for i in range(len(txt)):
+        pgs.append(pg(id[i],txt[i]))
+    temp = loader.get_template('SearchResult.html')
+    cont = Context({'pgs': pages})
+    return HttpResponse(temp.render(cont))  
+    
             
+            
+            
+def WordToSearch(request):
+    return render_to_response('Search.html', {}, context_instance = RequestContext(request))
             
         
