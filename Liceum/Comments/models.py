@@ -10,6 +10,8 @@ class Comment(models.Model):
 	author = models.CharField(max_length=30)
 	mailback = models.EmailField(max_length=30)
 	thread = models.CharField(max_length=3)
+	def __unicode__(self):
+		return u'%s %s' % (self.author, self.dateadd)
 	
 class CommentsAdmin(admin.ModelAdmin):
     list_display = ('name','author','dateadd')

@@ -8,6 +8,9 @@ class Menu(models.Model):
 	text = models.CharField(max_length = 30)
 	visible = models.BooleanField()
 	
+	def __unicode__(self):
+		return u'%s %s' % (self.text, self.visible)
+	
 
 class MenuAdmin(admin.ModelAdmin):
     list_display = ('text','visible')

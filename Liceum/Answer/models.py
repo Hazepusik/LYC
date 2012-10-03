@@ -9,6 +9,8 @@ class Answer(models.Model):
 	name = models.CharField(max_length=45)
 	text = models.TextField(null=True,blank=True)
 	visible = models.BooleanField()
+	def __unicode__(self):
+		return u'%s %s' % (self.author, self.dateadd)
 
 class AnswerAdmin(admin.ModelAdmin):
 	list_display = ('name','author','dateadd')

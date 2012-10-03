@@ -11,6 +11,9 @@ class Page(models.Model):
 	position = models.IntegerField(null=True,blank=True)
 	innerpage = models.BooleanField()
 	
+	def __unicode__(self):
+		return u'%s %s' % (self.name, self.visible)
+	
 class PageAdmin(admin.ModelAdmin):
     list_display = ('name','visible')
 

@@ -6,6 +6,8 @@ class Album(models.Model):
 	text = models.CharField(max_length=150, blank=True)
 	visible = models.BooleanField()
 	date = models.DateField(auto_now_add=True)
+	def __unicode__(self):
+		return u'%s %s' % (self.name, self.visible)
 	
 class ALbumAdmin(admin.ModelAdmin):
     list_display = ('name','visible')

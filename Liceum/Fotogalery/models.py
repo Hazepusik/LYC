@@ -8,6 +8,8 @@ class Foto(models.Model):
 	album = models.ForeignKey(Album)
 	subj = models.ImageField(upload_to="fotogalery/", blank=True)
 	visible = models.BooleanField()
+	def __unicode__(self):
+		return u'%s %s' % (self.name, self.visible)
 	
 class FotoAdmin(admin.ModelAdmin):
     list_display = ('name','visible')

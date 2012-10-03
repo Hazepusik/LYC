@@ -9,6 +9,8 @@ class StorageCell(models.Model):
 	page = models.ForeignKey(Page,on_delete=models.SET_NULL, null=True)
 	subj = models.FileField(upload_to="storage/", blank=True)
 	visible = models.BooleanField()
+	def __unicode__(self):
+		return u'%s %s' % (self.name, self.visible)
 	
 class StorageCellAdmin(admin.ModelAdmin):
     list_display = ('name','visible')

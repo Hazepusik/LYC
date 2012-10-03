@@ -7,6 +7,8 @@ class News(models.Model):
 	text = models.TextField(null=True,blank=True)
 	visible = models.BooleanField()
 	dateadd = models.DateField()
+	def __unicode__(self):
+		return u'%s %s' % (self.name, self.dateadd)
 
 class NewsAdmin(admin.ModelAdmin):
     list_display = ('name','dateadd') 
