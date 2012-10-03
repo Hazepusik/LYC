@@ -25,11 +25,13 @@ urlpatterns = patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
+    url(r'^menu/(?P<menupoint>\w+)/$',SubmenuOut),
+    
     url(r'^admin/', include(admin.site.urls)),
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     url(r'^News/$', NewsOut ),
-    url(r'^Menus/$', MenuOut ),
-    url(r'^Pages/(?P<pageid>\w+)/$', PageOut ),
+    url(r'^$', MenuOut ),
+    url(r'^pages/(?P<pageid>\w+)/$', PageOut ),
     url(r'^control/page/add/$', PgMenuToAdd ),
     url(r'^add_page/$', AddPage ),
     url(r'^control/page/edit/(?P<pageid>\w+)/$', EdPgOut ),

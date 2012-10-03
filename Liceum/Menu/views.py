@@ -6,6 +6,7 @@ from django.shortcuts import render_to_response, redirect
 
 from Menu.models import Menu
 from Page.models import Page
+from News.models import News
 from Storage.models import StorageCell
 
 
@@ -22,9 +23,28 @@ def MenuOut(request):
   #  if request.user.is_authenticated():
    #     menulist = Menu.objects.order_by('number')
     #    pagelist = Page.objects.order_by('position') 
-    temp = loader.get_template('menu.html')
-    cont = Context({'MenuText':menulist, 'Pgs':pagelist})
+    leftmenu = Menu.objects.filter(text='left') # gettin' left menu
+    leftpages = Page.objects.filter(visible=True).filter(menupoint=leftmenu)
+    
+    newslist= News.objects.filter(visible = True).order_by('-dateadd')[:3]
+    temp = loader.get_template('index.html')
+    cont = Context({'MenuText':menulist, 'Pgs':pagelist,'leftmenu':leftpages, 'newosti':newslist})
     return HttpResponse(temp.render(cont))
+ 
+def SubmenuOut(request, menupoint):	
+    menupointer = Menu.objects.get(id = menupoint)
+    if menupointer.visible == True:
+		menulist = Menu.objects.filter(visible = True).exclude(text = 'left').order_by('number')
+		pagelist = Page.objects.filter(menupoint = menupointer).filter(visible = True).order_by('position')
+
+		leftmenu = Menu.objects.filter(text='left') # gettin' left menu
+		leftpages = Page.objects.filter(visible=True).filter(menupoint=leftmenu)
+
+		newslist= News.objects.filter(visible = True).order_by('-dateadd')[:3]
+		temp = loader.get_template('index.html')
+		cont = Context({'MenuText':menulist, 'currentmenu':pagelist,'leftmenu':leftpages, 'newosti':newslist, 'nowmenu': menupointer})
+		return HttpResponse(temp.render(cont)) 
+
     
 def PgMenuToAdd(request):	
     if request.user.is_authenticated():

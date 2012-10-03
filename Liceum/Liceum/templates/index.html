@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Документ без названия</title>
+<link type="text/css" href="/media/templates/style/style.css" rel="stylesheet" />
+</head>
+
+<body style="background-image:url('/media/templates/img/background.png'); background-repeat:repeat; margin:33px 0px 0px 0px; display:block; padding:0px;">
+	<!-- head and menu -->
+    <div class="wraper">
+    	<div class="head_image"></div>
+    	<div class="head_text">
+        	<span style="font-family:Arial; font-size:18px; color:#999999; line-height:37px;">Государственное бюджетное образовательное учреждение города Москвы</span><br />
+        	<span style="font-family:Arial; font-size:18px; color:#ffffff; font-weight:bold; line-height:22px;">средняя общеобразовательная школа «Школа здоровья» №1693</span><br />
+        	<span style="font-family:Arial; font-size:18px; color:#ffffff; line-height:36px;">имени 1-й дивизии народного ополчения Москвы</span>
+        </div>
+        <div style="width:992px; height:21px; float:right; position:relative;"><img src="/media/templates/img/0.png" width="992" height="21" /></div>
+        <form name="find">
+        	<a class="find" href="#"></a>
+          	<div class="find">
+        		<input class="find"/>
+        	</div>
+        </form>
+        <a href="mailto:school1693@mail.ru" class="icon_mail"></a>
+        <a href="#" class="icon_zoom"></a>
+        <a href="/" class="icon_home"></a>
+        <ul class="menu">
+        	{% for menupoint in MenuText %} <li><a href="/menu/{{menupoint.id}}" {% if menupoint.id == nowmenu.id %} style="text-decoration:underline;" {% endif %}>{{menupoint.text}}</a></li> {% endfor %}
+        </ul>
+        <ul class="menu2">
+        	<li>
+            	{% for pagepoint in currentmenu %} <a {% if pagepoint.innerpage %} href="/pages/{{pagepoint.id}}" {% else %} href="{{pagepoint.text}}" target="_blank" {% endif %} >{{pagepoint.name}}</a> {% endfor %}
+            	<!--<a href="#">Педагогический коллектив</a>
+                <a href="#">Педагогический коллектив</a>
+                <a href="#">Педагогический коллектив</a>
+            	<a href="#">Административно-управленческий персонал</a> -->
+            </li>
+        </ul>
+        <div style="clear:both;"></div>
+    </div>
+    <!-- top banner -->
+    <div class="top_banner">
+    	<div id="list">
+        	<ul id="menu3">
+                <li id="head">Наша деятельность</li>
+                  {% for menupoint in leftmenu %}
+                
+                <li><a href="{% if menupoint.innerpage %} /pages/{{menupoint.id}} {% else %} {{menupoint.text}} {% endif %}">{{menupoint.name}}</a></li>
+                {% endfor %}
+                <!--<li><a href="#">Приём в первый класс</a></li>
+                <li><a href="#">Начальное образование</a></li>
+                <li><a href="#">Основное общее образование</a></li>
+                <li><a href="#">Среднее полное образование</a></li>
+                <li><a href="#">Дополнительное образование</a></li> -->
+            </ul>
+        </div>
+        <div id="photo" style="background-image:url('/media/templates/img/bgr_top_child.png');">
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+    <!--content-->
+    <div style="width:100%; position:relative; float:left; margin-top:19px; height:auto;">
+        <div class="content_main">
+            <div class="block">
+                <img src="/media/templates/img/jur.png" width="218" height="153" />
+                <h4>Электронный журнал</h4>
+                <div>
+                    <a href="#">Поздравляем с днём знаний и с первым днём осени!</a>
+                    <img src="/media/templates/img/0.png" width="100%" height="5" />
+                    Мы знаем все об окнах, и о том, как важно грамотно и качественно их монтировать, чтобы в Вашем доме царила атмосфера уюта и тепла. Осень замечательное время для установки новых окон,  а наши 											                    сезонные предложения  и скидки  сделают  Вашу покупку ещё привлекательней.
+                </div>
+            </div>
+            <div class="block">
+                <img src="/media/templates/img/book.png" width="218" height="153" />
+                <h4>Электронный журнал</h4>
+                <div>
+                    <a href="#">Поздравляем с днём знаний и с первым днём осени!</a>
+                    <img src="/media/templates/img/0.png" width="100%" height="5" />
+                    Мы знаем все об окнах, и о том, как важно грамотно и качественно их монтировать, чтобы в Вашем доме царила атмосфера уюта и тепла. Осень замечательное время для установки новых окон,  а наши 											                    сезонные предложения  и скидки  сделают  Вашу покупку ещё привлекательней.
+                </div>
+            </div>
+            <div class="block">
+                <img src="/media/templates/img/docs.png" width="218" height="153" />
+                <h4>Электронный журнал</h4>
+                <div>
+                    <a href="#">Поздравляем с днём знаний и с первым днём осени!</a>
+                    <img src="/media/templates/img/0.png" width="100%" height="5" />
+                    Мы знаем все об окнах, и о том, как важно грамотно и качественно их монтировать, чтобы в Вашем доме царила атмосфера уюта и тепла. Осень замечательное время для установки новых окон,  а наши 											                    сезонные предложения  и скидки  сделают  Вашу покупку ещё привлекательней.
+                </div>
+            </div>
+            <div class="block" style="margin-right:0px; margin-top:0px; overflow:visible;">
+            	<h4 style="margin-top:0px;">Новости</h4>
+               <!-- <span style="">10.05.2011</span>
+                <div>
+                    <a href="#">Поздравляем с днём знаний и с первым днём осени!</a>
+                    <img src="/media/templates/img/0.png" width="100%" height="5" />
+                    Мы знаем все об окнах, и о том, как важно грамотно и качественно их монтировать, чтобы в Вашем доме царила атмосфера уюта и тепла. Осень замечательное время для установки новых окон,  а наши 											                    сезонные предложения  и скидки  сделают  Вашу покупку ещё привлекательней.
+                </div>-->
+                 {% for new in newosti %}
+                <span style="">{{new.dateadd}}</span>
+                <div>
+                    <a href="#">{{new.name}}</a>
+                    <img src="/media/templates/img/0.png" width="100%" height="5" />
+                    {{new.text}}
+                </div> 
+                {% endfor %}
+                <a href="" style="display:block; float:left; position:relative; color:#ff6600; font-family:tahoma; font-size:14px; font-weight:bold; text-decoration:underline; margin-top:14px;">Все новости</a>
+            	
+            </div>
+        </div>
+    </div>
+    <!--footer-->
+    <div class="footer_top"></div>
+{% include "footer.html" %}
+        <div class="footer_stripe"></div>
+    </div>
+</body>
+</html>

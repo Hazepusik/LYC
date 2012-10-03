@@ -11,11 +11,12 @@ from Storage.models import StorageCell
 
 def PageOut(request,pageid):	
     pg = Page.objects.filter(visible = True).get(id = pageid)
+    menulist = Menu.objects.filter(visible = True).exclude(text = 'left').order_by('number')
+    curmenu = pg.menupoint
+    pagelist = Page.objects.filter(menupoint = curmenu).filter(visible = True).order_by('position') 
     files = StorageCell.objects.filter(visible = True).filter(page = pg)
- #   if request.user.is_authenticated():
-  #      page = Page.objects.get(id = pageid)
-    temp = loader.get_template('Pages.html')
-    cont = Context({'Page':pg, 'Files': files})
+    temp = loader.get_template('content.html')
+    cont = Context({'Page':pg, 'Files': files, 'MenuText':menulist, 'currentmenu':pagelist,'nowmenu':curmenu})
     return HttpResponse(temp.render(cont))
 
 def AddPage(request):
