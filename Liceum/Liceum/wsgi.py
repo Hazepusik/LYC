@@ -1,3 +1,10 @@
+import os, sys 
+base = os.path.dirname(os.path.dirname(__file__)) 
+base_parent = os.path.dirname(base) 
+sys.path.append(base) 
+sys.path.append(base_parent)
+
+
 """
 WSGI config for Liceum project.
 
@@ -13,7 +20,6 @@ middleware here, or combine a Django application with an application of another
 framework.
 
 """
-import os
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Liceum.settings")
 
