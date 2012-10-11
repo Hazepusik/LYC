@@ -5,14 +5,22 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response, redirect
 
 from News.models import News
+from Menu.models import Menu
 
 import datetime
 
-def NewsOut(request):	
+"""def NewsOut(request):	
 	newslist= News.objects.filter(visible = True)
 	temp = loader.get_template('news.html')
 	cont = Context({'NewsText':newslist})
-	return HttpResponse(temp.render(cont))
+	return HttpResponse(temp.render(cont)) """ # now no need for this. News will be at main page.
+	
+def NewOut(request,newid):	
+    pg = News.objects.filter(visible = True).get(id = newid)
+    menulist = Menu.objects.filter(visible = True).exclude(text = 'left').order_by('number')
+    temp = loader.get_template('content.html')
+    cont = Context({'Page':pg,'MenuText':menulist})
+    return HttpResponse(temp.render(cont))
 
 def NewsToAdd(request):
     if request.user.is_authenticated():
