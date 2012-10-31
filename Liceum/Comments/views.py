@@ -9,13 +9,26 @@ from Comments.models import Comment
 from Menu.models import Menu
 from Answer.models import Answer
 
-def CommToAdd(request, whom):	
-    return render_to_response('addcomment.html', {'whom':whom}, context_instance = RequestContext(request))
+def CommToAdd(request, whom):
+    comm = Comment.objects.filter(thread = whom).filter(visible = True).order_by('-dateadd')
+    ans = Answer.objects.filter(visible = True)
+    dir=False
+    zav=False
+    all=False
+    if whom=='dir':
+        dir = True
+    elif whom=='zav':
+        zav = True
+    elif whom=='all':
+        all = True
+    else:
+        return 'Thar id error! You are doing something wrong!'
+    return render_to_response('guestbook.html', {'whom':whom, 'comments':comm, 'answers':ans,'dir':dir,'zav':zav,'all':all}, context_instance = RequestContext(request))
 
 def AddComm(request, whom):
-    comm = Comment(text = request.POST['txt'], name = request.POST['name'], visible = True, author = request.POST['author'], mailback = request.POST['mail'], thread = whom)
+    comm = Comment(text = request.POST['txt'], name = request.POST['name'], visible = False, author = request.POST['author'], mailback = request.POST['mail'], thread = whom)
     comm.save()
-    return redirect('/comments/'+whom+'/')
+    return redirect('/addcomment/'+whom+'/')
 
 def DelComm(request, comid):
     if request.user.is_authenticated():
@@ -26,6 +39,7 @@ def DelComm(request, comid):
             ans.delete()
         comm.delete()
         return redirect('/../../control/comments/'+whom+'/')
+
 
 def CommOut(reqest, whom):
     comm = Comment.objects.filter(thread = whom).filter(visible = True).order_by('dateadd')

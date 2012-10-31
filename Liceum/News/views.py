@@ -9,11 +9,11 @@ from Menu.models import Menu
 
 import datetime
 
-"""def NewsOut(request):	
+def NewsOut(request):	
 	newslist= News.objects.filter(visible = True)
-	temp = loader.get_template('news.html')
+	temp = loader.get_template('archive.html')
 	cont = Context({'NewsText':newslist})
-	return HttpResponse(temp.render(cont)) """ # now no need for this. News will be at main page.
+	return HttpResponse(temp.render(cont))  # now no need for this. News will be at main page.
 	
 def NewOut(request,newid):	
     pg = News.objects.filter(visible = True).get(id = newid)

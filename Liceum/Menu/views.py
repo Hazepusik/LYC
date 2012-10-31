@@ -15,34 +15,32 @@ def EdPgOut(request,pageid):
         menulist = Menu.objects.order_by('number')
         pagelist = Page.objects.get(id = pageid)
         files = StorageCell.objects.filter(page = pagelist).order_by('id')
+        files = StorageCell.objects.filter(page = pagelist).order_by('id')
         return render_to_response('control/page/edit.html', {'MenuText':menulist, 'Page':pagelist, 'Files':files}, context_instance = RequestContext(request))
 
 def MenuOut(request):	
-    menulist = Menu.objects.filter(visible = True).exclude(text = 'left').order_by('number')
+    menulist = Menu.objects.filter(visible = True).exclude(number__gt = 100).order_by('number')
     pagelist = Page.objects.filter(visible = True).order_by('position') 
-  #  if request.user.is_authenticated():
-   #     menulist = Menu.objects.order_by('number')
-    #    pagelist = Page.objects.order_by('position') 
-    leftmenu = Menu.objects.filter(text='left') # gettin' left menu
-    leftpages = Page.objects.filter(visible=True).filter(menupoint=leftmenu)
+    leftmenu = Menu.objects.filter(number__gt = 100). filter(visible = True).order_by('number')# gettin' left menu
+    #leftpages = Page.objects.filter(visible=True).filter(menupoint=leftmenu)
     
     newslist= News.objects.filter(visible = True).order_by('-dateadd')[:3]
     temp = loader.get_template('index.html')
-    cont = Context({'MenuText':menulist, 'Pgs':pagelist,'leftmenu':leftpages, 'newosti':newslist})
+    cont = Context({'MenuText':menulist, 'Pgs':pagelist,'leftmenu':leftmenu, 'newosti':newslist})
     return HttpResponse(temp.render(cont))
  
 def SubmenuOut(request, menupoint):	
     menupointer = Menu.objects.get(id = menupoint)
     if menupointer.visible == True:
-		menulist = Menu.objects.filter(visible = True).exclude(text = 'left').order_by('number')
+		menulist = Menu.objects.filter(visible = True).exclude(number__gt = 100).order_by('number')
 		pagelist = Page.objects.filter(menupoint = menupointer).filter(visible = True).order_by('position')
 
-		leftmenu = Menu.objects.filter(text='left') # gettin' left menu
-		leftpages = Page.objects.filter(visible=True).filter(menupoint=leftmenu)
+		leftmenu = Menu.objects.filter(number__gt = 100). filter(visible = True).order_by('number')
+		#leftpages = Page.objects.filter(visible=True).filter(menupoint=leftmenu)
 
 		newslist= News.objects.filter(visible = True).order_by('-dateadd')[:3]
 		temp = loader.get_template('index.html')
-		cont = Context({'MenuText':menulist, 'currentmenu':pagelist,'leftmenu':leftpages, 'newosti':newslist, 'nowmenu': menupointer})
+		cont = Context({'MenuText':menulist, 'currentmenu':pagelist,'leftmenu':leftmenu, 'newosti':newslist, 'nowmenu': menupointer})
 		return HttpResponse(temp.render(cont)) 
 
     

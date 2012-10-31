@@ -12,6 +12,8 @@ from Fotogalery.models import Foto
 from Storage.views import get_type
 
 
+
+
 #haz
 def AlbumToAdd(request):
     if request.user.is_authenticated():
@@ -47,21 +49,23 @@ def DelAlbum(request, albid):
         alb.delete()
         return redirect('/control/fotogalery/')
 
-#haz  
+#haz  #NO, MartSlaaf
 def FotogaleryOut(request):	
     alb = Album.objects.filter(visible = True).order_by('date')
-    temp = loader.get_template('Fotogalery.html')
-    cont = Context({'Albums': alb})
+    temp = loader.get_template('fotogalery.html')
+    cont = Context({'Albums': alb,'list':True})
+	
     return HttpResponse(temp.render(cont))
 
-#haz  
+#haz # NO, MartSlaaf
+
 def AlbumOut(request, albid):
     alb = Album.objects.get(id=albid)
     foto = Foto.objects.filter(visible = True).filter(album = alb).order_by('id')
-    temp = loader.get_template('Albums.html')
-    cont = Context({'Fotos': foto})
+    temp = loader.get_template('fotogalery.html')
+    cont = Context({'Fotos': foto,'list':False})
     return HttpResponse(temp.render(cont))
-
+	
 #haz
 def ContrAlbumOut(request, albid):    
     if request.user.is_authenticated():

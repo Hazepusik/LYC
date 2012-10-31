@@ -29,7 +29,7 @@ urlpatterns = patterns('',
     
     url(r'^admin/', include(admin.site.urls)),
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
-    url(r'^news/(?P<newid>\w+)/$', NewOut ),
+    url(r'^news/$', NewsOut ),
     url(r'^$', MenuOut ),
     url(r'^pages/(?P<pageid>\w+)/$', PageOut ),
     url(r'^control/page/add/$', PgMenuToAdd ),
